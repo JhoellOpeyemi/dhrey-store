@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { AnimatePresence } from "framer-motion";
 
-function App() {
+// normal components import
+import ScrollToTop from "./components/ScrollToTop";
+import { Header, Home } from "./components";
+
+// contexts provider import
+import { NavProvider } from "./contexts/NavContext";
+import { ProductsProvider } from "./contexts/ProductsContext";
+
+// styled components import
+import GlobalStyles from "./styles/Global";
+import theme from "./lib/theme";
+
+const App = () => {
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ScrollToTop>
+        <ProductsProvider>
+          <NavProvider>
+            <GlobalStyles />
+
+            <Header />
+            <AnimatePresence>
+              <Routes location={location} key={location.key}>
+                <Route path="/" element={<Home />} />
+              </Routes>
+            </AnimatePresence>
+          </NavProvider>
+        </ProductsProvider>
+      </ScrollToTop>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
