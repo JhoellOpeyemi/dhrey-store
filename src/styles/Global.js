@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     *:focus {
-        outline: 2px dashed black;
+        outline: 2px dashed ${({ theme }) => theme.colors.pryColor};
     }
 
     html {

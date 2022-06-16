@@ -9,7 +9,7 @@ const theme = {
     white4: "#bbb",
     text: "#ccc",
     heading: "#ddd",
-    button: "#f0b55c",
+    pryColor: "#f0b55c",
     cartBadge: "#ee0000",
     searchDark: "#5f5f5f",
     searchLight: "#bfbfbf",

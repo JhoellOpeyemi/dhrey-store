@@ -19,6 +19,7 @@ import Drone from "../../../assets/drone.jpg";
 import { LinkButton } from "../../../styles/Buttons.styled";
 import {
   HeroButtonVariants,
+  HeroTextVariants,
   HeroWordVariants,
   MainVariants,
 } from "./HeroAnimation";
@@ -65,7 +66,7 @@ const Hero = () => {
 
       <HeroText
         as={motion.h1}
-        variants={MainVariants}
+        variants={HeroTextVariants}
         initial="hidden"
         animate="visible"
       >
