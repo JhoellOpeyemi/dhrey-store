@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-  min-height: calc(100vh - 5.375rem);
-  margin-top: 5.375rem;
-  padding-top: 2rem;
+  min-height: calc(100vh - 5.2rem);
+  margin-top: 5.2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.black4};
 `;
 
 export const SearchBox = styled.div`
@@ -65,5 +66,14 @@ export const Image = styled.div`
 export const HeroText = styled.h1`
   color: ${({ theme }) => theme.colors.heading};
   font-size: 1.9rem;
-  margin: 1rem 0;
+  margin: 1rem 0 1.5rem;
+  overflow: hidden;
+
+  .word {
+    overflow: hidden;
+  }
+
+  span {
+    transform-style: preserve-3d;
+  }
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const LinkButton = styled(Link)`
@@ -6,6 +6,7 @@ export const LinkButton = styled(Link)`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.button};
   text-transform: uppercase;
+  letter-spacing: 1px;
 
   &::before {
     content: "";
@@ -16,4 +17,17 @@ export const LinkButton = styled(Link)`
     height: 0.1rem;
     background-color: ${({ theme }) => theme.colors.button};
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 1.25rem;
+      text-transform: capitalize;
+      letter-spacing: 0;
+      color: ${({ theme }) => theme.colors.white4};
+
+      &::before {
+        background-color: ${({ theme }) => theme.colors.white4};
+      }
+    `}
 `;

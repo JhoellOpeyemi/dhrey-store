@@ -16,6 +16,12 @@ import {
 const Header = () => {
   const { nav, toggleNav } = useContext(NavContext);
 
+  if (!nav) {
+    document.querySelector("body").style.overflowY = "auto";
+  } else {
+    document.querySelector("body").style.overflowY = "hidden";
+  }
+
   return (
     <StyledHeader>
       <NavWrapper>

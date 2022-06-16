@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 
 // normal components import
 import ScrollToTop from "./components/ScrollToTop";
-import { Header, Home } from "./components";
+import { Footer, Header, Home } from "./components";
 
 // contexts provider import
 import { NavProvider } from "./contexts/NavContext";
@@ -24,13 +24,14 @@ const App = () => {
         <ProductsProvider>
           <NavProvider>
             <GlobalStyles />
+            <Header />
 
             <AnimatePresence exitBeforeEnter>
-              <Header />
               <Routes location={location} key={location.key}>
                 <Route path="/" element={<Home />} />
               </Routes>
             </AnimatePresence>
+            <Footer />
           </NavProvider>
         </ProductsProvider>
       </ScrollToTop>

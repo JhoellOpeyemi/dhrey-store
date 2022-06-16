@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Montserrat', sans-serif;
         background: ${({ theme }) => theme.colors.bodyBg};
         overflow-x: hidden;
+        font-size: 1rem;
         color: ${({ theme }) => theme.colors.text};
     }
 
@@ -35,6 +36,8 @@ const GlobalStyles = createGlobalStyle`
         display: inline-block;
         text-decoration: none;
         margin: 0.2rem;
+        color: ${({ theme }) => theme.colors.text};
+
     }
 
     li {
@@ -47,6 +50,10 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
         background: none;
         border: none;
+    }
+
+    span {
+        display: inline-block;
     }
 `;
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 import { Overlay } from "../../../styles/Utilities.styled";
 
@@ -16,6 +17,11 @@ import Boots from "../../../assets/boots.jpg";
 import PowerBank from "../../../assets/power-bank.jpg";
 import Drone from "../../../assets/drone.jpg";
 import { LinkButton } from "../../../styles/Buttons.styled";
+import {
+  HeroButtonVariants,
+  HeroWordVariants,
+  MainVariants,
+} from "./HeroAnimation";
 
 const imageArray = [Boots, PowerBank, Drone];
 
@@ -38,7 +44,7 @@ const Hero = () => {
   }, [setCurrent, current, length]);
 
   return (
-    <Main>
+    <Main as={motion.main} variants={MainVariants}>
       <SearchBox>
         <SearchIcon />
         <input type="search" placeholder="Search Products" />
@@ -54,20 +60,41 @@ const Hero = () => {
             );
           })}
         </ImageGroup>
-        <Overlay backgroundImage="linear-gradient(0deg, rgba(0,0,0,.5) 30%, rgba(218,218,218,.8) 100%)" />
+        <Overlay backgroundImage="linear-gradient(0deg, rgba(0,0,0,.5) 30%, rgba(218,218,218,.3) 100%)" />
       </HeroSlider>
 
-      <HeroText>
-        <span>Quality </span>
-        <span>Products </span>
-        <span>Delivered </span>
-        <span>Right </span>
-        <span>To </span>
-        <span>Your </span>
-        <span>Door</span>
+      <HeroText
+        as={motion.h1}
+        variants={MainVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Quality&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Products&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Delivered&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Right&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>To&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Your&nbsp;</motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={HeroWordVariants}>Door</motion.span>
+        </span>
       </HeroText>
 
-      <LinkButton to="/">Shop Now</LinkButton>
+      <motion.div variants={HeroButtonVariants}>
+        <LinkButton to="/">Shop Now</LinkButton>
+      </motion.div>
     </Main>
   );
 };
