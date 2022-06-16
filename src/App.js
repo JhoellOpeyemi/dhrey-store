@@ -25,8 +25,8 @@ const App = () => {
           <NavProvider>
             <GlobalStyles />
 
-            <Header />
-            <AnimatePresence>
+            <AnimatePresence exitBeforeEnter>
+              <Header />
               <Routes location={location} key={location.key}>
                 <Route path="/" element={<Home />} />
               </Routes>

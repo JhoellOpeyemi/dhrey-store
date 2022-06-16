@@ -1,6 +1,6 @@
 export const PreLoaderVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.2, delayChildren: 2.1 } },
+  visible: { opacity: 1, transition: { duration: 0.2, delayChildren: 1.8 } },
   exit: { y: "-100vh" },
 };
 

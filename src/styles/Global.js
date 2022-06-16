@@ -20,7 +20,11 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Montserrat', sans-serif;
         background: ${({ theme }) => theme.colors.bodyBg};
         overflow-x: hidden;
-        color: #444;
+        color: ${({ theme }) => theme.colors.text};
+    }
+
+    h1,h2,h3,h4,h5 {
+        line-height: 1.2;
     }
 
     p {

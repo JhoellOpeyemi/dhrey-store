@@ -7,6 +7,9 @@ const theme = {
     black8: "#888",
     white: "#eee",
     white4: "#ccc",
+    heading: "#ddd",
+    text: "#bbb",
+    button: "#f0b55c",
     cartBadge: "#ee0000",
     searchDark: "#5f5f5f",
     searchLight: "#bfbfbf",
@@ -22,7 +25,7 @@ const theme = {
     desktop: "1024px",
   },
 
-  container: "85%",
+  container: "88%",
 };
 
 export default theme;

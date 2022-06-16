@@ -7,7 +7,7 @@ export const NavWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem 0;
+  padding: 1.4rem 0;
   background-color: ${({ theme }) => theme.colors.bodyBg};
   z-index: 10;
   border-bottom: 1px solid ${({ theme }) => theme.colors.white};
