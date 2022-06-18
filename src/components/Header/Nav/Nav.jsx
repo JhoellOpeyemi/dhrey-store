@@ -1,39 +1,37 @@
 import React from "react";
-import { motion } from "framer-motion";
+
+import CartIcon from "../../icons/CartIcon";
 
 import { Link, LinkWrapper, StyledNav } from "./Nav.styled";
 
-import { NavVariants, NavLinkVariants } from "./NavAnimation";
-
-const Nav = ({ nav }) => {
+const Nav = ({ nav, setNav }) => {
   return (
     <>
-      {nav && (
-        <StyledNav
-          nav={nav}
-          as={motion.nav}
-          variants={NavVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <LinkWrapper>
-            <motion.span variants={NavLinkVariants}>
-              <Link to="/">Home</Link>
-            </motion.span>
-          </LinkWrapper>
-          <LinkWrapper>
-            <motion.span variants={NavLinkVariants}>
-              <Link to="/">About</Link>
-            </motion.span>
-          </LinkWrapper>
-          <LinkWrapper>
-            <motion.span variants={NavLinkVariants}>
-              <Link to="/">Shop</Link>
-            </motion.span>
-          </LinkWrapper>
-        </StyledNav>
-      )}
+      <StyledNav nav={nav}>
+        <LinkWrapper nav={nav}>
+          <Link to="/" activeClassName="active" onClick={() => setNav(false)}>
+            Home
+          </Link>
+        </LinkWrapper>
+
+        <LinkWrapper nav={nav}>
+          <Link to="about" activeClassName="active" onClick={() => setNav(false)}>
+            About
+          </Link>
+        </LinkWrapper>
+
+        <LinkWrapper nav={nav}>
+          <Link to="/" activeClassName="active" onClick={() => setNav(false)}>
+            Shop
+          </Link>
+        </LinkWrapper>
+
+        <LinkWrapper nav={nav}>
+          <Link to="/" cart activeClassName="active" onClick={() => setNav(false)}>
+            <CartIcon />
+          </Link>
+        </LinkWrapper>
+      </StyledNav>
     </>
   );
 };

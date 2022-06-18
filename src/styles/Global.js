@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        transition: all .4s;
+        transition: all ${({ theme }) => theme.transition};
     }
 
     *:focus {
@@ -50,6 +50,13 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
         background: none;
         border: none;
+    }
+
+    .word {
+        overflow: hidden;
+        span {
+            transform-style: preserve-3d;
+        }
     }
 
     span {

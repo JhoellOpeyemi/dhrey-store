@@ -20,12 +20,14 @@ const theme = {
   },
 
   break: {
-    tablet: "550px",
-    bigTablet: "800px",
+    tablet: "580px",
+    bigTablet: "750px",
     desktop: "1024px",
   },
 
   container: "88%",
+  transition: ".3s",
+  linkDelay: ".1s",
 };
 
 export default theme;

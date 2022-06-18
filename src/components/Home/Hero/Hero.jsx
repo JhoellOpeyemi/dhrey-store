@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import { Overlay } from "../../../styles/Utilities.styled";
-
-import SearchIcon from "../../icons/SearchIcon";
+// styled components import
+import { Main, Overlay, Slide } from "../../../styles/Utilities.styled";
+import { LinkButton } from "../../../styles/Buttons.styled";
 import {
+  ButtonWrapper,
   HeroSlider,
   HeroText,
+  HeroTextWrapper,
   Image,
   ImageGroup,
-  Main,
   SearchBox,
+  SliderAndText,
 } from "./Hero.styled";
 
+// images and icons import
 import Boots from "../../../assets/boots.jpg";
 import PowerBank from "../../../assets/power-bank.jpg";
 import Drone from "../../../assets/drone.jpg";
-import { LinkButton } from "../../../styles/Buttons.styled";
+import SearchIcon from "../../icons/SearchIcon";
+
+// animation variants import
 import {
   HeroButtonVariants,
-  HeroTextVariants,
-  HeroWordVariants,
   MainVariants,
+  ImageVariants,
 } from "./HeroAnimation";
+import { SlideVariants, TextVariants, WordVariants } from "../../Animation";
 
 const imageArray = [Boots, PowerBank, Drone];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
   const length = imageArray.length;
+
+  const heroText = "Quality Products Delivered Right To Your Door";
+
+  let heroTextArray = heroText.split(" ");
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -51,51 +60,42 @@ const Hero = () => {
         <input type="search" placeholder="Search Products" />
       </SearchBox>
 
-      <HeroSlider>
-        <ImageGroup>
-          {imageArray.map((image, index) => {
-            return (
-              <Image key={index} className={index === current ? "active" : ""}>
-                <img src={image} alt="" />
-              </Image>
-            );
-          })}
-        </ImageGroup>
-        <Overlay backgroundImage="linear-gradient(0deg, rgba(0,0,0,.5) 30%, rgba(218,218,218,.3) 100%)" />
-      </HeroSlider>
+      <SliderAndText>
+        <HeroSlider>
+          <ImageGroup>
+            <Slide as={motion.div} variants={SlideVariants} />
+            {imageArray.map((image, index) => {
+              return (
+                <Image
+                  key={index}
+                  className={index === current ? "active" : ""}
+                >
+                  <motion.img src={image} alt="" variants={ImageVariants} />
+                </Image>
+              );
+            })}
+          </ImageGroup>
+          <Overlay backgroundImage="linear-gradient(0deg, rgba(0,0,0,.5) 30%, rgba(218,218,218,.3) 100%)" />
+        </HeroSlider>
 
-      <HeroText
-        as={motion.h1}
-        variants={HeroTextVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Quality&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Products&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Delivered&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Right&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>To&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Your&nbsp;</motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={HeroWordVariants}>Door</motion.span>
-        </span>
-      </HeroText>
+        <HeroTextWrapper>
+          <HeroText as={motion.h1} variants={TextVariants}>
+            {heroTextArray.map((text, index) => {
+              return (
+                <span className="word" key={index}>
+                  <motion.span variants={WordVariants}>
+                    {text}&nbsp;
+                  </motion.span>
+                </span>
+              );
+            })}
+          </HeroText>
 
-      <motion.div variants={HeroButtonVariants}>
-        <LinkButton to="/">Shop Now</LinkButton>
-      </motion.div>
+          <ButtonWrapper as={motion.div} variants={HeroButtonVariants}>
+            <LinkButton to="/">Shop Now</LinkButton>
+          </ButtonWrapper>
+        </HeroTextWrapper>
+      </SliderAndText>
     </Main>
   );
 };

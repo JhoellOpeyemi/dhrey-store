@@ -14,7 +14,7 @@ import {
 } from "./Header.styled";
 
 const Header = () => {
-  const { nav, toggleNav } = useContext(NavContext);
+  const { nav, toggleNav, setNav } = useContext(NavContext);
 
   if (!nav) {
     document.querySelector("body").style.overflowY = "auto";
@@ -28,7 +28,7 @@ const Header = () => {
         <div>
           <Logo nav={nav}>Dhrey store</Logo>
 
-          <Nav nav={nav} />
+          <Nav nav={nav} setNav={setNav} />
 
           <HamburgerWrapper onClick={toggleNav} nav={nav}>
             {nav ? <Close /> : <Hamburger />}

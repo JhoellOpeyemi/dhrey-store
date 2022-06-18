@@ -37,7 +37,7 @@ export const ProgressBar = styled.div`
     height: 100%;
     width: 0;
     background-color: ${({ theme }) => theme.colors.white};
-    animation: progress 2.3s linear forwards 0.3s;
+    animation: progress 2.5s linear forwards 0.8s;
   }
 
   @keyframes progress {

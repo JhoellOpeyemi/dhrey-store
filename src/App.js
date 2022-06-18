@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 
 // normal components import
 import ScrollToTop from "./components/ScrollToTop";
-import { Footer, Header, Home } from "./components";
+import { About, Footer, Header, Home } from "./components";
 
 // contexts provider import
 import { NavProvider } from "./contexts/NavContext";
@@ -29,6 +29,7 @@ const App = () => {
             <AnimatePresence exitBeforeEnter>
               <Routes location={location} key={location.key}>
                 <Route path="/" element={<Home />} />
+                <Route path="about" element={<About />} />
               </Routes>
             </AnimatePresence>
             <Footer />

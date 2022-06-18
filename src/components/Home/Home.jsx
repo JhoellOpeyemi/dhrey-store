@@ -16,13 +16,14 @@ const Home = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 3500);
   }, [setIsLoading]);
 
   return (
     <>
-      {isLoading && <PreLoader />}
-      {!isLoading && (
+      {isLoading ? (
+        <PreLoader />
+      ) : (
         <Container
           as={motion.div}
           variants={HomeVariants}
