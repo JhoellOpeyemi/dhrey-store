@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const PageHeader = styled.h2`
   text-transform: uppercase;
   text-align: center;
   font-size: 2rem;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+    font-size: 2.7rem;
+  }
 `;
 
 export const SectionHeader = styled.h3`
@@ -22,4 +27,22 @@ export const Text = styled.p`
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     font-size: 1.3rem;
   }
+
+  ${({ borderTop }) =>
+    borderTop &&
+    css`
+      border-top: 1px solid ${({ theme }) => theme.colors.black4};
+      margin-top: 1rem;
+      padding-top: 2rem;
+    `}
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 1.02rem;
+
+      @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+        font-size: 1.2rem;
+      }
+    `}
 `;

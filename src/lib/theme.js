@@ -11,11 +11,6 @@ const theme = {
     heading: "#ddd",
     pryColor: "#f0b55c",
     cartBadge: "#ee0000",
-    searchDark: "#5f5f5f",
-    searchLight: "#bfbfbf",
-    faqBg: "#e6e6e6",
-    footerBg: "#333",
-    headerBg: "#fefefe",
     preLoaderProgress: "#555",
   },
 

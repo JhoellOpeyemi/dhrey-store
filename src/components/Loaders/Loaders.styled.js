@@ -86,3 +86,24 @@ export const PreLoaderText = styled.p`
   color: ${({ theme }) => theme.colors.darkWhite};
   letter-spacing: 2px;
 `;
+
+export const StyledPageTransition = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.bodyBg};
+  color: ${({ theme }) => theme.colors.white};
+  z-index: 10;
+
+  p {
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+`;

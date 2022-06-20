@@ -67,10 +67,12 @@ const Hero = () => {
             {imageArray.map((image, index) => {
               return (
                 <Image
+                  as={motion.div}
                   key={index}
                   className={index === current ? "active" : ""}
+                  variants={ImageVariants}
                 >
-                  <motion.img src={image} alt="" variants={ImageVariants} />
+                  <img src={image} alt="" />
                 </Image>
               );
             })}

@@ -19,4 +19,12 @@ export const FooterLink = styled(Link)`
   &:not(:last-child) {
     margin-right: 1.5rem;
   }
+
+  /* &.${({ activeClassName }) => activeClassName} {
+    color: ${({ theme }) => theme.colors.pryColor};
+  } */
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;

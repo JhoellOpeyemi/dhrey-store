@@ -3,25 +3,24 @@ import { motion } from "framer-motion";
 
 import { Container } from "../../styles/Utilities.styled";
 
-import { PreLoader } from "../Loaders/Loaders";
 import About from "./About/About";
 import Collections from "./Collections/Collections";
 import Hero from "./Hero/Hero";
 import { HomeVariants } from "./HomeAnimation";
+import { PreLoader } from "../Loaders/Loaders";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [preLoader, setPreLoader] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
-    }, 3500);
-  }, [setIsLoading]);
+      setPreLoader(false);
+    }, 3300);
+  }, []);
 
   return (
     <>
-      {isLoading ? (
+      {preLoader ? (
         <PreLoader />
       ) : (
         <Container

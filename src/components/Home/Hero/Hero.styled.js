@@ -50,6 +50,7 @@ export const HeroSlider = styled.div`
 export const ImageGroup = styled.div`
   position: relative;
   height: 100%;
+  overflow: hidden;
 
   .active {
     opacity: 1;
@@ -62,7 +63,6 @@ export const Image = styled.div`
   width: 100%;
   height: 100%;
   opacity: 0;
-  overflow: hidden;
   transition: all 0.8s;
 
   img {

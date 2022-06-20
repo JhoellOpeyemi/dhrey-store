@@ -11,6 +11,9 @@ import { AboutWrapper } from "./About.styled";
 import { AboutButtonVariants, AboutVariants } from "./AboutAnimation";
 import { TextVariants, WordVariants, HeadingVariants } from "../../Animation";
 
+// content import
+import { HomeAboutText } from "../../../lib/websiteTexts";
+
 const About = () => {
   const { ref, inView } = useInView({
     threshold: 0.15,
@@ -18,10 +21,7 @@ const About = () => {
 
   const aboutAnimation = useAnimation();
 
-  const aboutText =
-    "Dhreylyte store launched its very first collection catalog in 2021. Since then we have grown into one of the nation’s leading and fastest growing store, direct-to-consumer companies. We have been recognized by the industry as a Top Cataloger and Top Internet Retailer.";
-
-  let aboutTextArray = aboutText.split(" ");
+  let aboutTextArray = HomeAboutText.split(" ");
 
   useEffect(() => {
     if (inView) {

@@ -11,5 +11,16 @@ export const CollectionVariants = {
 };
 
 export const CollectionGroupVariants = {
-  visible: { transition: { staggerChildren: 0.6 } },
+  visible: { transition: { staggerChildren: 0.7 } },
+};
+
+export const CollectionNameVariants = {
+  hidden: { y: "20%", opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+    },
+  },
 };

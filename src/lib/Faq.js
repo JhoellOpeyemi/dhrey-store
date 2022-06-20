@@ -1,4 +1,4 @@
-export const Questions = [
+export const QuestionsAndAnswers = [
   {
     question: "What is this?",
     answer: "An e-commerce site",

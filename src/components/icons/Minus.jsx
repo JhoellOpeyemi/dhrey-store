@@ -12,7 +12,7 @@ const Minus = () => {
     >
       <path
         d="M15.8334 9.5H3.16675"
-        stroke="black"
+        stroke="#bbb"
         strokeWidth="2"
         strokeLinecap="round"
       />

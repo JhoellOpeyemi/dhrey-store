@@ -5,10 +5,18 @@ const Footer = () => {
   return (
     <StyledFooter>
       <FooterLinks>
-        <FooterLink to="/">Home</FooterLink>
-        <FooterLink to="/">About</FooterLink>
-        <FooterLink to="/">Shop</FooterLink>
-        <FooterLink to="/">Contact</FooterLink>
+        <FooterLink to="/" activeClassName="active">
+          Home
+        </FooterLink>
+        <FooterLink to="/" activeClassName="active">
+          About
+        </FooterLink>
+        <FooterLink to="/" activeClassName="active">
+          Shop
+        </FooterLink>
+        <FooterLink to="/" activeClassName="active">
+          Contact
+        </FooterLink>
       </FooterLinks>
     </StyledFooter>
   );

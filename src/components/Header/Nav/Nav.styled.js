@@ -65,7 +65,7 @@ export const LinkWrapper = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     &:not(:last-child) {
-      margin: 0 3.5rem 0 0;
+      margin: 0 3rem 0 0;
     }
   }
 `;
@@ -131,12 +131,12 @@ export const Link = styled(NavLink)`
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     font-size: 1.3rem;
-    color: ${({ theme }) => theme.colors.black8};
+    color: ${({ theme }) => theme.colors.white4};
     text-transform: capitalize;
     transform: translateY(0%);
 
     &:hover {
-      color: ${({ theme }) => theme.colors.white4};
+      color: ${({ theme }) => theme.colors.white};
     }
   }
 

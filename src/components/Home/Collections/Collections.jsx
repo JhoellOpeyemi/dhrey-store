@@ -26,8 +26,12 @@ import {
 } from "../../Animation";
 import {
   CollectionGroupVariants,
+  CollectionNameVariants,
   CollectionVariants,
 } from "./CollectionAnimation";
+
+// content import
+import { CollectionSubTextArray } from "../../../lib/websiteTexts";
 
 const Collections = () => {
   const { categories } = useContext(ProductsContext);
@@ -35,13 +39,9 @@ const Collections = () => {
   const categoriesToShow = categories.slice(-3);
 
   const { ref, inView } = useInView({
-    threshold: 0.25,
+    threshold: 0.3,
   });
   const collectionAnimation = useAnimation();
-
-  const collectionSubText = "Explore various collections of our products";
-
-  let collectionSubTextArray = collectionSubText.split(" ");
 
   useEffect(() => {
     if (inView) {
@@ -62,7 +62,7 @@ const Collections = () => {
       </SectionHeader>
 
       <Text as={motion.p} variants={TextVariants}>
-        {collectionSubTextArray.map((text, index) => {
+        {CollectionSubTextArray.map((text, index) => {
           return (
             <span className="word" key={index}>
               <motion.span variants={WordVariants}>{text}&nbsp;</motion.span>
@@ -77,8 +77,10 @@ const Collections = () => {
             <Card key={index} to="/">
               <Slide as={motion.div} variants={SlideVariants} />
               <CollectionImage src={category?.assets[0]?.url} alt="" />
-              <CollectionName>{category.name}</CollectionName>
-              <Overlay backgroundImage="linear-gradient(0deg, rgba(0,0,0,.9) 25%, rgba(230,230,230,.1) 100%)" />
+              <CollectionName as={motion.h5} variants={CollectionNameVariants}>
+                {category.name}
+              </CollectionName>
+              <Overlay backgroundColor="rgba(20,20,20,.6)" />
             </Card>
           );
         })}
