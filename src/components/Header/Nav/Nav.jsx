@@ -36,7 +36,7 @@ const Nav = ({ nav, setNav }) => {
 
         <LinkWrapper nav={nav}>
           <Link
-            to="/"
+            to="/cart"
             cart
             activeClassName="active"
             onClick={() => setNav(false)}

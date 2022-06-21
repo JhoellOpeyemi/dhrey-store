@@ -16,7 +16,7 @@ const About = () => {
   useEffect(() => {
     setTimeout(() => {
       setPageTransition(false);
-    }, 2000);
+    }, 1500);
   });
   return (
     <>

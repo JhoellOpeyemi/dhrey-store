@@ -24,10 +24,13 @@ const Product = ({ product }) => {
 
   return (
     <ProductsList>
-      <ProductCard to="/" onClick={() => setProductOverview(product)}>
+      <ProductCard
+        to={`/product/${product.id}`}
+        onClick={() => setProductOverview(product)}
+      >
         <ProductImageContainer>
           <ProductImage src={product.assets[0].url} alt="" />
-          <Overlay backgroundColor="rgba(0,0,0,.3)" />
+          <Overlay product />
         </ProductImageContainer>
 
         <ProductDetails>

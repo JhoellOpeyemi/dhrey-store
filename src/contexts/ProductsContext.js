@@ -4,20 +4,31 @@ import { commerce } from "../lib/commerce";
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
+  const productOverviewFromLocalStorage = JSON.parse(
+    localStorage.getItem("product") || "{}"
+  );
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [productOverview, setProductOverview] = useState({});
+  const [productOverview, setProductOverview] = useState(
+    productOverviewFromLocalStorage
+  );
   const [cart, setCart] = useState({});
 
   useEffect(() => {
+    // store product overview to local storage, this is to persist the state even after page refreshes
+    localStorage.setItem("product", JSON.stringify(productOverview));
+
     fetchCategories();
     retrieveCart();
-  }, []);
+  }, [productOverview]);
 
+  // function to fetch all the categories e.g Fashion, Home accessories from commerce api
   const fetchCategories = () => {
     commerce.categories.list().then((category) => setCategories(category.data));
   };
 
+  // function to fetch all the products in each category
   const fetchCategoryProducts = (category) => {
     setProducts([]);
     if (category === "all") {

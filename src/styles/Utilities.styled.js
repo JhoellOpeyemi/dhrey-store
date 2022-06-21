@@ -36,6 +36,12 @@ export const Overlay = styled.div`
   background-color: ${({ backgroundColor }) => backgroundColor};
   background-image: ${({ backgroundImage }) => backgroundImage};
   pointer-events: none;
+
+  ${({ product }) =>
+    product &&
+    css`
+      background-color: rgba(0, 0, 0, 0.25);
+    `}
 `;
 
 export const Slide = styled.div`

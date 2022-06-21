@@ -55,7 +55,9 @@ export const PageTransition = ({ text }) => {
   );
 };
 
-export const LoadingProducts = () => {
+export const LoadingProducts = ({ text }) => {
+  let textArray = text.split(" ");
+
   return (
     <LoadingProductsWrapper
       as={motion.div}
@@ -65,16 +67,15 @@ export const LoadingProducts = () => {
       exit="exit"
     >
       <PreLoaderText as={motion.p} variants={TextVariants}>
-        <span className="word">
-          <motion.span variants={LoadingProductsWordVariants}>
-            Fetching&nbsp;
-          </motion.span>
-        </span>
-        <span className="word">
-          <motion.span variants={LoadingProductsWordVariants}>
-            Products
-          </motion.span>
-        </span>
+        {textArray.map((text, index) => {
+          return (
+            <span className="word" key={index}>
+              <motion.span variants={LoadingProductsWordVariants}>
+                {text}&nbsp;
+              </motion.span>
+            </span>
+          );
+        })}
       </PreLoaderText>
     </LoadingProductsWrapper>
   );

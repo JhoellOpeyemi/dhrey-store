@@ -5,7 +5,16 @@ import { AnimatePresence } from "framer-motion";
 
 // normal components import
 import ScrollToTop from "./components/ScrollToTop";
-import { About, Footer, Header, Home, Products, Shop } from "./components";
+import {
+  About,
+  Cart,
+  Footer,
+  Header,
+  Home,
+  ProductOverview,
+  Products,
+  Shop,
+} from "./components";
 
 // contexts provider import
 import { NavProvider } from "./contexts/NavContext";
@@ -28,11 +37,17 @@ const App = () => {
             <AnimatePresence exitBeforeEnter>
               <Routes location={location} key={location.key}>
                 <Route path="/" element={<Home />} />
+
                 <Route path="about" element={<About />} />
+
                 <Route path="shop" element={<Shop />}>
                   <Route index element={<Products />} />
                   <Route path=":collection" element={<Products />} />
                 </Route>
+
+                <Route path="product/:id" element={<ProductOverview />} />
+
+                <Route path="cart" element={<Cart />} />
               </Routes>
             </AnimatePresence>
             <Footer />

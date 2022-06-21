@@ -39,7 +39,7 @@ export const Text = styled.p`
   ${({ small }) =>
     small &&
     css`
-      font-size: 1.02rem;
+      font-size: 1.05rem;
 
       @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
         font-size: 1.2rem;

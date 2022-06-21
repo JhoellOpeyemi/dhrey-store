@@ -105,6 +105,7 @@ export const StyledPageTransition = styled.div`
     text-transform: uppercase;
     font-size: 2rem;
     letter-spacing: 2px;
+    text-align: center;
   }
 `;
 

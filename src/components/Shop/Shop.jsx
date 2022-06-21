@@ -31,7 +31,7 @@ const Shop = () => {
   return (
     <>
       {products?.length === 0 ? (
-        <LoadingProducts />
+        <LoadingProducts text="Fetching Products" />
       ) : (
         <Container
           as={motion.div}

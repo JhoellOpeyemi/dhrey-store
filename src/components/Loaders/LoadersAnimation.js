@@ -14,7 +14,7 @@ export const PageTransitionVariants = {
   hidden: { x: "100vw" },
   visible: {
     x: 0,
-    transition: { type: "tween", duration: 0.3, delayChildren: 0.8 },
+    transition: { type: "tween", duration: 0.3, delayChildren: 0.5 },
   },
   exit: { x: "-100vw", transition: { type: "tween", duration: 0.3 } },
 };
