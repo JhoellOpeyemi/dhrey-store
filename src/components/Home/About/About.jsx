@@ -51,7 +51,7 @@ const About = () => {
       </Text>
 
       <motion.div variants={AboutButtonVariants}>
-        <LinkButton to="/" small>
+        <LinkButton to="/about" small>
           Read More
         </LinkButton>
       </motion.div>

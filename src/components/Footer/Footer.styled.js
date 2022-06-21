@@ -20,9 +20,9 @@ export const FooterLink = styled(Link)`
     margin-right: 1.5rem;
   }
 
-  /* &.${({ activeClassName }) => activeClassName} {
+  &.${({ activeClassName }) => activeClassName} {
     color: ${({ theme }) => theme.colors.pryColor};
-  } */
+  }
 
   &:hover {
     color: ${({ theme }) => theme.colors.white};

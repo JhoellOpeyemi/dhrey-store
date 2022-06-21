@@ -81,9 +81,9 @@ export const Link = styled(NavLink)`
     color: ${({ theme }) => theme.colors.pryColor};
   }
 
-  /* &.${({ activeClassName }) => activeClassName} {
+  &.${({ activeClassName }) => activeClassName} {
     color: ${({ theme }) => theme.colors.pryColor};
-  } */
+  }
 
   ${({ cart }) =>
     cart &&
@@ -109,13 +109,13 @@ export const Link = styled(NavLink)`
         }
       }
 
-      /* &.${({ activeClassName }) => activeClassName} {
+      &.${({ activeClassName }) => activeClassName} {
         svg {
           path {
             fill: ${({ theme }) => theme.colors.pryColor};
           }
         }
-      } */
+      }
 
       @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
         svg {

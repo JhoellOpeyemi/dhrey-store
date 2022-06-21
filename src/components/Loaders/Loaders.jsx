@@ -6,12 +6,15 @@ import {
   ProgressBar,
   PreLoaderText,
   StyledPageTransition,
+  LoadingProductsWrapper,
 } from "./Loaders.styled";
 
 import {
   PreLoaderVariants,
   PageTransitionVariants,
   PageTransitionTextVariants,
+  LoadingProductsVariants,
+  LoadingProductsWordVariants,
 } from "./LoadersAnimation";
 
 export const PreLoader = () => {
@@ -49,5 +52,30 @@ export const PageTransition = ({ text }) => {
     >
       <motion.p variants={PageTransitionTextVariants}>{text}</motion.p>
     </StyledPageTransition>
+  );
+};
+
+export const LoadingProducts = () => {
+  return (
+    <LoadingProductsWrapper
+      as={motion.div}
+      variants={LoadingProductsVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <PreLoaderText as={motion.p} variants={TextVariants}>
+        <span className="word">
+          <motion.span variants={LoadingProductsWordVariants}>
+            Fetching&nbsp;
+          </motion.span>
+        </span>
+        <span className="word">
+          <motion.span variants={LoadingProductsWordVariants}>
+            Products
+          </motion.span>
+        </span>
+      </PreLoaderText>
+    </LoadingProductsWrapper>
   );
 };

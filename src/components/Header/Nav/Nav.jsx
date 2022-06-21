@@ -15,19 +15,32 @@ const Nav = ({ nav, setNav }) => {
         </LinkWrapper>
 
         <LinkWrapper nav={nav}>
-          <Link to="about" activeClassName="active" onClick={() => setNav(false)}>
+          <Link
+            to="/about"
+            activeClassName="active"
+            onClick={() => setNav(false)}
+          >
             About
           </Link>
         </LinkWrapper>
 
         <LinkWrapper nav={nav}>
-          <Link to="/" activeClassName="active" onClick={() => setNav(false)}>
+          <Link
+            to="/shop/all"
+            activeClassName="active"
+            onClick={() => setNav(false)}
+          >
             Shop
           </Link>
         </LinkWrapper>
 
         <LinkWrapper nav={nav}>
-          <Link to="/" cart activeClassName="active" onClick={() => setNav(false)}>
+          <Link
+            to="/"
+            cart
+            activeClassName="active"
+            onClick={() => setNav(false)}
+          >
             <CartIcon />
           </Link>
         </LinkWrapper>

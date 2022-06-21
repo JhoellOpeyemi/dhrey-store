@@ -107,3 +107,21 @@ export const StyledPageTransition = styled.div`
     letter-spacing: 2px;
   }
 `;
+
+export const LoadingProductsWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.bodyBg};
+  z-index: 5;
+
+  p {
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+  }
+`;

@@ -43,6 +43,8 @@ const Collections = () => {
   });
   const collectionAnimation = useAnimation();
 
+  console.log(categories);
+
   useEffect(() => {
     if (inView) {
       collectionAnimation.start("visible");
@@ -74,7 +76,7 @@ const Collections = () => {
       <CollectionGroup as={motion.div} variants={CollectionGroupVariants}>
         {categoriesToShow.map((category, index) => {
           return (
-            <Card key={index} to="/">
+            <Card key={index} to={`/shop/${category.slug}`}>
               <Slide as={motion.div} variants={SlideVariants} />
               <CollectionImage src={category?.assets[0]?.url} alt="" />
               <CollectionName as={motion.h5} variants={CollectionNameVariants}>
@@ -86,7 +88,7 @@ const Collections = () => {
         })}
       </CollectionGroup>
 
-      <LinkButton to="/" small>
+      <LinkButton to="/shop/all" small>
         See All
       </LinkButton>
     </CollectionsWrapper>

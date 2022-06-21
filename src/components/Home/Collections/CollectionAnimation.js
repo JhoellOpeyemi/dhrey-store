@@ -11,7 +11,7 @@ export const CollectionVariants = {
 };
 
 export const CollectionGroupVariants = {
-  visible: { transition: { staggerChildren: 0.7 } },
+  visible: { transition: { staggerChildren: 0.3 } },
 };
 
 export const CollectionNameVariants = {

@@ -4,7 +4,7 @@ export const HeadingVariants = {
 };
 
 export const TextVariants = {
-  visible: { transition: { staggerChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.03 } },
 };
 
 export const WordVariants = {
@@ -14,7 +14,7 @@ export const WordVariants = {
     y: 0,
     rotateX: 0,
     rotateZ: 0,
-    transition: { type: "tween", duration: 0.8 },
+    transition: { type: "tween", duration: 0.25 },
   },
 };
 
@@ -22,6 +22,6 @@ export const SlideVariants = {
   hidden: { width: "100%" },
   visible: {
     width: "0%",
-    transition: { type: "tween", duration: 0.8 },
+    transition: { type: "tween", duration: 0.6 },
   },
 };

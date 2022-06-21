@@ -1,10 +1,10 @@
 export const MainVariants = {
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.25 } },
 };
 
 export const ImageVariants = {
-  hidden: { scale: 1.3 },
-  visible: { scale: 1, transition: { duration: 0.6 } },
+  hidden: { scale: 1.2 },
+  visible: { scale: 1, transition: { duration: 0.8 } },
 };
 
 export const HeroButtonVariants = {

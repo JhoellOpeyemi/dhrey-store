@@ -24,3 +24,19 @@ export const PageTransitionTextVariants = {
   visible: { opacity: 1, transition: { duration: 0.2 } },
   exit: { opacity: 0, transition: { duration: 0.1 } },
 };
+
+export const LoadingProductsVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.1 } },
+};
+
+export const LoadingProductsWordVariants = {
+  hidden: { opacity: 0, y: "250%", rotateX: "15deg", rotateZ: "30deg" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    rotateZ: 0,
+    transition: { type: "tween", duration: 0.05 },
+  },
+};

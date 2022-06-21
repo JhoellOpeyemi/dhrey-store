@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const LinkButton = styled(Link)`
   position: relative;
@@ -30,4 +30,21 @@ export const LinkButton = styled(Link)`
         background-color: ${({ theme }) => theme.colors.white4};
       }
     `}
+`;
+
+export const FilterLinkButton = styled(NavLink)`
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  &.${({ activeClassName }) => activeClassName} {
+    border: 1px solid ${({ theme }) => theme.colors.black8};
+    background-color: #333;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+    font-size: 1.2rem;
+    padding: 0.7rem 0.9rem;
+  }
 `;

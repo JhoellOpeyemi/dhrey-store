@@ -67,12 +67,10 @@ const Hero = () => {
             {imageArray.map((image, index) => {
               return (
                 <Image
-                  as={motion.div}
                   key={index}
                   className={index === current ? "active" : ""}
-                  variants={ImageVariants}
                 >
-                  <img src={image} alt="" />
+                  <motion.img src={image} alt="" variants={ImageVariants} />
                 </Image>
               );
             })}
@@ -94,7 +92,7 @@ const Hero = () => {
           </HeroText>
 
           <ButtonWrapper as={motion.div} variants={HeroButtonVariants}>
-            <LinkButton to="/">Shop Now</LinkButton>
+            <LinkButton to="/shop/all">Shop Now</LinkButton>
           </ButtonWrapper>
         </HeroTextWrapper>
       </SliderAndText>

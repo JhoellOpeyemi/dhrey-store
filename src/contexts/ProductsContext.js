@@ -18,7 +18,8 @@ export const ProductsProvider = ({ children }) => {
     commerce.categories.list().then((category) => setCategories(category.data));
   };
 
-  const setCategoryProducts = (category) => {
+  const fetchCategoryProducts = (category) => {
+    setProducts([]);
     if (category === "all") {
       commerce.products.list().then((product) => setProducts(product.data));
     } else {
@@ -61,7 +62,7 @@ export const ProductsProvider = ({ children }) => {
         setProducts,
         categories,
         setCategories,
-        setCategoryProducts,
+        fetchCategoryProducts,
         productOverview,
         setProductOverview,
         cart,
