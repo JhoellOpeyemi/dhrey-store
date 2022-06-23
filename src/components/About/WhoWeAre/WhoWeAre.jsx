@@ -113,7 +113,7 @@ const WhoWeAre = () => {
         ref={fourthTextRef}
         initial="hidden"
         animate={fourthTextAnimation}
-        borderTop
+        borderTop="true"
       >
         {FourthAboutTextArray.map((text, index) => {
           return (

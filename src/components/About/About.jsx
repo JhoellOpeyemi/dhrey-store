@@ -14,10 +14,12 @@ const About = () => {
   const [pageTransition, setPageTransition] = useState(true);
 
   useEffect(() => {
+    document.title = "About | Dhrey Store";
     setTimeout(() => {
       setPageTransition(false);
     }, 1500);
   });
+
   return (
     <>
       {pageTransition ? (

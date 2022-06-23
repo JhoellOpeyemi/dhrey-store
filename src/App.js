@@ -14,6 +14,7 @@ import {
   ProductOverview,
   Products,
   Shop,
+  NotFound,
 } from "./components";
 
 // contexts provider import
@@ -48,6 +49,8 @@ const App = () => {
                 <Route path="product/:id" element={<ProductOverview />} />
 
                 <Route path="cart" element={<Cart />} />
+
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
             <Footer />

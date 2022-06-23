@@ -72,9 +72,9 @@ const ProductOverview = () => {
                   <Overlay product />
                 </CurrentImage>
                 <OtherImagesGroup>
-                  {productOverview?.assets?.map((img) => {
+                  {productOverview?.assets?.map((img, index) => {
                     return (
-                      <OtherImage>
+                      <OtherImage key={index}>
                         <OtherImageButton
                           key={img.id}
                           onClick={(e) => showImage(e)}

@@ -29,6 +29,7 @@ export const StyledNav = styled.nav`
 `;
 
 export const LinkWrapper = styled.div`
+  position: relative;
   overflow: hidden;
 
   &:not(:last-child) {
@@ -148,4 +149,19 @@ export const Link = styled(NavLink)`
       transform: translateY(0);
     }
   }
+`;
+
+export const NumberOfItem = styled.span`
+  position: absolute;
+  top: -0.125rem;
+  right: -0.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  aspect-ratio: 1/1;
+  background-color: red;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.colors.white};
 `;

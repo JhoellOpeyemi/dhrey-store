@@ -1,6 +1,6 @@
 import React from "react";
-import { QuantityButton } from "../../../styles/Buttons.styled";
-import { Overlay } from "../../../styles/Utilities.styled";
+
+// icons import
 import Close from "../../icons/Close";
 import Minus from "../../icons/Minus";
 import Plus from "../../icons/Plus";
@@ -17,16 +17,21 @@ import {
   PriceAndDelete,
   Quantity,
   QuantityPriceDelete,
+  CartCheckout,
+  ButtonGroup,
+  SubTotalPrice,
+  SubTotal,
 } from "./FilledCart.styled";
+import { QuantityButton } from "../../../styles/Buttons.styled";
+import { Overlay } from "../../../styles/Utilities.styled";
+import { CtaButton, SecondaryButton } from "../../../styles/Buttons.styled";
 
 const FilledCart = ({ cart, updateQuantity, removeFromCart, emptyCart }) => {
   const formattedPrice = (price) => {
     const naira = "₦";
-    const amount = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const amount = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return `${naira}${amount}`;
   };
-
-  console.log(cart);
 
   return (
     <CartWrapper>
@@ -64,6 +69,19 @@ const FilledCart = ({ cart, updateQuantity, removeFromCart, emptyCart }) => {
           </Details>
         </CartItem>
       ))}
+
+      <CartCheckout>
+        <SubTotal>
+          Subtotal -{" "}
+          <SubTotalPrice>{formattedPrice(cart?.subtotal?.raw)}</SubTotalPrice>
+        </SubTotal>
+        <ButtonGroup>
+          <SecondaryButton onClick={emptyCart}>Empty cart</SecondaryButton>
+          <CtaButton to="/" big="true">
+            Checkout
+          </CtaButton>
+        </ButtonGroup>
+      </CartCheckout>
     </CartWrapper>
   );
 };

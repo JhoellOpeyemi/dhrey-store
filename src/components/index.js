@@ -6,3 +6,4 @@ export { default as Products } from "./Shop/Products/Products";
 export { default as ProductOverview } from "./ProductOverview/ProductOverview";
 export { default as Cart } from "./Cart/Cart";
 export { default as Footer } from "./Footer/Footer";
+export { default as NotFound } from "./NotFound/NotFound";

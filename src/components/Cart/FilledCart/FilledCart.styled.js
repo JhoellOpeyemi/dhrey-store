@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CartWrapper = styled.ul`
   padding: 4rem 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.black8};
 `;
 
 export const CartItem = styled.li`
@@ -146,28 +145,26 @@ export const Delete = styled.button`
   }
 `;
 
-export const Checkout = styled.div`
-  p {
-    font-size: 1.375rem;
-    font-weight: 500;
-    text-align: right;
-    margin: 3.75rem 0 3.125rem;
+export const CartCheckout = styled.div``;
 
-    span {
-      font-weight: 600;
-    }
-  }
-
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+export const SubTotal = styled.p`
+  font-size: 1.375rem;
+  font-weight: 500;
+  text-align: right;
+  margin: 3.75rem 0 3.125rem;
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
-    p {
-      font-size: 2rem;
-      margin: 8rem 0 6.25rem;
-    }
+    font-size: 2rem;
+    margin: 8rem 0 6.25rem;
   }
+`;
+
+export const SubTotalPrice = styled.span`
+  font-weight: 600;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;

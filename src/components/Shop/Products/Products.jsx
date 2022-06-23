@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 
 // context import
 import { ProductsContext } from "../../../contexts/ProductsContext";
-import { SectionHeader } from "../../../styles/Headings.styled";
+import { SectionHeader, Text } from "../../../styles/Headings.styled";
 
 // styled components import
-import { ProductsGroup, ProductsWrapper } from "./Products.styled";
+import { ProductsGroup, ProductsWrapper, NoProducts } from "./Products.styled";
 import { TextVariants, WordVariants } from "../../Animation";
 import Product from "../Product/Product";
 
@@ -18,6 +18,8 @@ const Products = () => {
   const params = useParams();
 
   const productsHeading = params.collection.split("-");
+
+  console.log(products);
 
   return (
     <ProductsWrapper>
@@ -35,6 +37,13 @@ const Products = () => {
         {products?.map((product, index) => {
           return <Product key={index} product={product} />;
         })}
+        {typeof products === "undefined" && (
+          <NoProducts>
+            <Text>
+              No products in this collection right now. Check back later!
+            </Text>
+          </NoProducts>
+        )}
       </ProductsGroup>
     </ProductsWrapper>
   );

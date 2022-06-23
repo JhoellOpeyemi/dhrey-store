@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+
+// context import
+import { ProductsContext } from "../../../contexts/ProductsContext";
 
 import CartIcon from "../../icons/CartIcon";
 
-import { Link, LinkWrapper, StyledNav } from "./Nav.styled";
+import { Link, LinkWrapper, StyledNav, NumberOfItem } from "./Nav.styled";
 
 const Nav = ({ nav, setNav }) => {
+  const { cart } = useContext(ProductsContext);
+
   return (
     <>
       <StyledNav nav={nav}>
@@ -37,11 +42,14 @@ const Nav = ({ nav, setNav }) => {
         <LinkWrapper nav={nav}>
           <Link
             to="/cart"
-            cart
+            cart="true"
             activeClassName="active"
             onClick={() => setNav(false)}
           >
             <CartIcon />
+            {cart?.line_items?.length > 0 && (
+              <NumberOfItem>{cart.line_items.length}</NumberOfItem>
+            )}
           </Link>
         </LinkWrapper>
       </StyledNav>

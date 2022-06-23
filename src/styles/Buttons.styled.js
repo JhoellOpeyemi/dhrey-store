@@ -8,6 +8,10 @@ export const LinkButton = styled(Link)`
   text-transform: uppercase;
   letter-spacing: 1px;
 
+  &:hover::before {
+    width: 0;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -67,6 +71,18 @@ export const CtaButton = styled(Link)`
     font-size: 1.2rem;
     padding: 1.2rem 1.3rem;
   }
+
+  ${({ big }) =>
+    big &&
+    css`
+      font-size: 1.25rem;
+      padding: 1.25rem 1.35rem;
+
+      @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+        font-size: 1.4rem;
+        padding: 1.3rem 1.7rem;
+      }
+    `}
 `;
 
 export const QuantityButton = styled.button`
@@ -75,5 +91,27 @@ export const QuantityButton = styled.button`
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     padding: 0.45rem 0.65rem;
+  }
+`;
+
+export const SecondaryButton = styled.button`
+  position: relative;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  color: ${({ theme }) => theme.colors.white4};
+
+  &:hover::before {
+    width: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.3rem;
+    width: 100%;
+    height: 0.1rem;
+    background-color: ${({ theme }) => theme.colors.white4};
   }
 `;

@@ -20,3 +20,10 @@ export const ProductsGroup = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem 1.5rem;
 `;
+
+export const NoProducts = styled.div`
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+  opacity: 0.8;
+`;

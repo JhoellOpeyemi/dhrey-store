@@ -11,6 +11,10 @@ import { PageHeader } from "../../styles/Headings.styled";
 // normal components import
 import EmptyCart from "./EmptyCart/EmptyCart";
 import FilledCart from "./FilledCart/FilledCart";
+import { PageTransition } from "../Loaders/Loaders";
+
+// animation variants import
+import { CartVariants } from "./CartAnimation";
 
 const Cart = () => {
   const [pageTransition, setPageTransition] = useState(true);
@@ -25,22 +29,34 @@ const Cart = () => {
   });
 
   return (
-    <Container>
-      <Main moreTop>
-        <PageHeader>Cart</PageHeader>
+    <>
+      {pageTransition ? (
+        <PageTransition text="Cart" />
+      ) : (
+        <Container
+          as={motion.div}
+          variants={CartVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <Main moreTop>
+            <PageHeader>Cart</PageHeader>
 
-        {cart.total_items === 0 ? (
-          <EmptyCart />
-        ) : (
-          <FilledCart
-            cart={cart}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            emptyCart={emptyCart}
-          />
-        )}
-      </Main>
-    </Container>
+            {cart.total_items === 0 ? (
+              <EmptyCart />
+            ) : (
+              <FilledCart
+                cart={cart}
+                updateQuantity={updateQuantity}
+                removeFromCart={removeFromCart}
+                emptyCart={emptyCart}
+              />
+            )}
+          </Main>
+        </Container>
+      )}
+    </>
   );
 };
 
