@@ -11,7 +11,7 @@ const Footer = () => {
         <FooterLink to="/about" activeClassName="active">
           About
         </FooterLink>
-        <FooterLink to="/shop" activeClassName="active">
+        <FooterLink to="/shop/all" activeClassName="active">
           Shop
         </FooterLink>
         <FooterLink to="/" activeClassName="active">

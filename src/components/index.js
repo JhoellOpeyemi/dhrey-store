@@ -5,5 +5,8 @@ export { default as Shop } from "./Shop/Shop";
 export { default as Products } from "./Shop/Products/Products";
 export { default as ProductOverview } from "./ProductOverview/ProductOverview";
 export { default as Cart } from "./Cart/Cart";
+export { default as Checkout } from "./Checkout/Checkout";
+export { default as AddressForm } from "./Checkout/AddressForm/AddressForm";
+export { default as PaymentForm } from "./Checkout/PaymentForm/PaymentForm";
 export { default as Footer } from "./Footer/Footer";
 export { default as NotFound } from "./NotFound/NotFound";

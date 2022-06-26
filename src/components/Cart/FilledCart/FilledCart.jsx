@@ -73,11 +73,15 @@ const FilledCart = ({ cart, updateQuantity, removeFromCart, emptyCart }) => {
       <CartCheckout>
         <SubTotal>
           Subtotal -{" "}
-          <SubTotalPrice>{formattedPrice(cart?.subtotal?.raw)}</SubTotalPrice>
+          <SubTotalPrice>
+            {typeof cart?.subtotal?.raw === "undefined"
+              ? "-"
+              : formattedPrice(cart?.subtotal?.raw)}
+          </SubTotalPrice>
         </SubTotal>
         <ButtonGroup>
           <SecondaryButton onClick={emptyCart}>Empty cart</SecondaryButton>
-          <CtaButton to="/" big="true">
+          <CtaButton to="/checkout" big="true">
             Checkout
           </CtaButton>
         </ButtonGroup>

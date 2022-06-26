@@ -15,14 +15,6 @@ export const ProductsProvider = ({ children }) => {
   );
   const [cart, setCart] = useState({});
 
-  useEffect(() => {
-    // store product overview to local storage, this is to persist the state even after page refreshes
-    localStorage.setItem("product", JSON.stringify(productOverview));
-
-    fetchCategories();
-    retrieveCart();
-  }, [productOverview]);
-
   // function to fetch all the categories e.g Fashion, Home accessories from commerce api
   const fetchCategories = () => {
     commerce.categories.list().then((category) => setCategories(category.data));
@@ -65,6 +57,14 @@ export const ProductsProvider = ({ children }) => {
   const emptyCart = () => {
     commerce.cart.empty().then((response) => setCart(response.cart));
   };
+
+  useEffect(() => {
+    // store product overview to local storage, this is to persist the state even after page refreshes
+    localStorage.setItem("product", JSON.stringify(productOverview));
+
+    fetchCategories();
+    retrieveCart();
+  }, [productOverview]);
 
   return (
     <ProductsContext.Provider

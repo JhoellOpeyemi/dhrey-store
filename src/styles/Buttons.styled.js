@@ -75,12 +75,12 @@ export const CtaButton = styled(Link)`
   ${({ big }) =>
     big &&
     css`
-      font-size: 1.25rem;
-      padding: 1.25rem 1.35rem;
+      font-size: 1.2rem;
+      padding: 1.1rem 1.2rem;
 
       @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
         font-size: 1.4rem;
-        padding: 1.3rem 1.7rem;
+        padding: 1.3rem 1.6rem;
       }
     `}
 `;
@@ -96,7 +96,7 @@ export const QuantityButton = styled.button`
 
 export const SecondaryButton = styled.button`
   position: relative;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-transform: capitalize;
   letter-spacing: 0;
   color: ${({ theme }) => theme.colors.white4};
@@ -114,4 +114,14 @@ export const SecondaryButton = styled.button`
     height: 0.1rem;
     background-color: ${({ theme }) => theme.colors.white4};
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+    font-size: 1.25rem;
+  }
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 1rem;
+    `}
 `;

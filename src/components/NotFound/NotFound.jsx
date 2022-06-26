@@ -26,7 +26,7 @@ const NotFound = () => {
           <NotFoundText>
             But no need to panic, we are here for you!
           </NotFoundText>
-          <CtaButton to="/shop">Go To Shop</CtaButton>
+          <CtaButton to="/shop/all">Go To Shop</CtaButton>
         </NotFoundMain>
 
         <ImageGroup>
