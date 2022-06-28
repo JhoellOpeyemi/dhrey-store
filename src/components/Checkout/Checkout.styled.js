@@ -32,6 +32,7 @@ export const StepGroup = styled.div`
 
   svg {
     margin-right: 0.5rem;
+    width: 1.125rem;
   }
 `;
 
@@ -44,7 +45,11 @@ export const StepDivider = styled.div`
 
 export const FormWrapper = styled.div`
   width: 100%;
+  max-width: 57rem;
   margin: 2rem auto;
   border: 1px solid ${({ theme }) => theme.colors.black4};
   padding: 2rem 1.4rem;
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+  }
 `;

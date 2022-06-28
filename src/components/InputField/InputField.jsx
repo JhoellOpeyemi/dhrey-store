@@ -1,8 +1,9 @@
 import { InputLabel, Input, ErrorMessage } from "./InputField.styled";
 
-export const InputField = ({ label, name, register, required, errors }) => {
+export const InputField = ({ label, name, register, errors }) => {
   const emailPattern =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const phoneNumberPattern = "[+]{1}[0-9]{11,14}";
 
   return (
@@ -13,7 +14,10 @@ export const InputField = ({ label, name, register, required, errors }) => {
           <Input
             id={name}
             type="email"
-            {...register(name, { required, pattern: emailPattern })}
+            {...register(name, {
+              required: { value: true },
+              pattern: emailPattern,
+            })}
           />
           {errors["email"]?.type === "pattern" && (
             <ErrorMessage>Please enter a valid email</ErrorMessage>
@@ -23,13 +27,20 @@ export const InputField = ({ label, name, register, required, errors }) => {
         <Input
           id={name}
           type="tel"
-          {...register(name, { required, pattern: phoneNumberPattern })}
+          {...register(name, {
+            required: { value: true },
+            pattern: phoneNumberPattern,
+          })}
         />
       ) : (
-        <Input id={name} type="text" {...register(name, { required })} />
+        <Input
+          id={name}
+          type="text"
+          {...register(name, { required: { value: true } })}
+        />
       )}
       {errors[`${name}`]?.type === "required" && (
-        <ErrorMessage>Please enter your {label}</ErrorMessage>
+        <ErrorMessage>Please your {label} is required</ErrorMessage>
       )}
     </>
   );

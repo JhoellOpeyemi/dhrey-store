@@ -7,10 +7,15 @@ export const StyledForm = styled.form``;
 export const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: 1.7rem;
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+    margin-bottom: 2.7rem;
+  }
 `;
 
 export const CustomSelect = styled.div`
   position: relative;
+  margin-top: 1rem;
 `;
 
 export const CustomArrow = styled.div`
@@ -52,7 +57,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2.5rem;
 `;
 
 export const NextButton = styled.button`
@@ -64,5 +69,10 @@ export const NextButton = styled.button`
 
   &:hover {
     background-color: #333;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+    font-size: 1.2rem;
+    padding: 1.2rem 1.5rem;
   }
 `;

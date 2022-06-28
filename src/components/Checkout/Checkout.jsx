@@ -42,7 +42,7 @@ const Checkout = () => {
 
           <StepGroup className="payment">
             <Tick />
-            <Text small>PaymentDetails</Text>
+            <Text small>Payment details</Text>
           </StepGroup>
         </StepsWrapper>
 

@@ -45,4 +45,16 @@ export const Text = styled.p`
         font-size: 1.2rem;
       }
     `}
+
+    ${({ italic }) =>
+    italic &&
+    css`
+      font-style: italic;
+    `}
+
+    ${({ pryColor }) =>
+    pryColor &&
+    css`
+      color: ${({ theme }) => theme.colors.pryColor};
+    `}
 `;

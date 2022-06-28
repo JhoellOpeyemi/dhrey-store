@@ -12,6 +12,9 @@ export const CheckoutProvider = ({ children }) => {
   const [shippingCountry, setShippingCountry] = useState("");
   const [subDivisions, setSubDivisions] = useState([]);
   const [subDivision, setSubDivision] = useState("");
+  const [shippingOption, setShippingOption] = useState({});
+
+  const [customerShippingData, setCustomerShippingData] = useState({});
 
   const generateToken = (cartId) => {
     commerce.checkout
@@ -37,13 +40,27 @@ export const CheckoutProvider = ({ children }) => {
       });
   };
 
+  const fetchShippingOptions = (checkoutTokenId, country, region) => {
+    commerce.checkout
+      .getShippingOptions(checkoutTokenId, {
+        country,
+        region,
+      })
+      .then((option) => setShippingOption(option[0]));
+  };
+
   useEffect(() => {
     fetchShippingCountry(checkoutToken);
-  }, []);
+  }, [checkoutToken]);
 
   useEffect(() => {
     if (shippingCountry) fetchSubDivisions(checkoutToken, shippingCountry);
-  }, [shippingCountry]);
+  }, [shippingCountry, checkoutToken]);
+
+  useEffect(() => {
+    if (subDivision)
+      fetchShippingOptions(checkoutToken, shippingCountry, subDivision);
+  }, [subDivision, shippingCountry, checkoutToken]);
 
   return (
     <CheckoutContext.Provider
@@ -62,6 +79,9 @@ export const CheckoutProvider = ({ children }) => {
         subDivisions,
         subDivision,
         setSubDivision,
+        shippingOption,
+        customerShippingData,
+        setCustomerShippingData,
       }}
     >
       {children}
