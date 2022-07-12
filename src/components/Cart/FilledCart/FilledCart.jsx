@@ -30,7 +30,7 @@ const FilledCart = () => {
 
   return (
     <CartWrapper>
-      {cart.map((item) => (
+      {cart?.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
 
