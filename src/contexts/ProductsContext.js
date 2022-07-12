@@ -8,7 +8,7 @@ export const ProductsProvider = ({ children }) => {
   const productOverviewFromLocalStorage = JSON.parse(
     localStorage.getItem("product") || "{}"
   );
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const totalPriceFromLocalStorage = JSON.parse(
     localStorage.getItem("total") || "[]"
   );
