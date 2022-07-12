@@ -46,7 +46,7 @@ const Cart = () => {
           <Main moreTop>
             <PageHeader>Cart</PageHeader>
 
-            {cart.length === 0 ? <EmptyCart /> : <FilledCart />}
+            {cart?.length === 0 ? <EmptyCart /> : <FilledCart />}
           </Main>
         </Container>
       )}
