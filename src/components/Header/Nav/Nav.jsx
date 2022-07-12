@@ -46,7 +46,7 @@ const Nav = ({ nav, setNav }) => {
             onClick={() => setNav(false)}
           >
             <CartIcon />
-            {cart.length > 0 && <NumberOfItem>{cart.length}</NumberOfItem>}
+            {cart?.length > 0 && <NumberOfItem>{cart.length}</NumberOfItem>}
           </Link>
         </LinkWrapper>
       </StyledNav>
