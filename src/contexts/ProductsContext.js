@@ -1,87 +1,106 @@
 import { useState, useEffect, createContext } from "react";
-import { commerce } from "../lib/commerce";
 
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
+  const [products, setProducts] = useState({});
+
   const productOverviewFromLocalStorage = JSON.parse(
     localStorage.getItem("product") || "{}"
   );
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+  const totalPriceFromLocalStorage = JSON.parse(
+    localStorage.getItem("total") || "[]"
+  );
 
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [collections, setCollections] = useState({});
   const [productOverview, setProductOverview] = useState(
     productOverviewFromLocalStorage
   );
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState(cartFromLocalStorage);
+  const [totalPrice, setTotalPrice] = useState(totalPriceFromLocalStorage);
+  const [subTotal, setSubTotal] = useState();
 
-  // function to fetch all the categories e.g Fashion, Home accessories from commerce api
+  const baseUrl = "https://dhrey-store.herokuapp.com/api";
+
   const fetchCategories = () => {
-    commerce.categories.list().then((category) => setCategories(category.data));
+    fetch(`${baseUrl}/categories?populate=*`)
+      .then((res) => res.json())
+      .then((data) => setCollections(data));
   };
 
-  // function to fetch all the products in each category
-  const fetchCategoryProducts = (category) => {
-    setProducts([]);
-    if (category === "all") {
-      commerce.products.list().then((product) => setProducts(product.data));
-    } else {
-      commerce.products
-        .list({
-          category_slug: [category],
-        })
-        .then((product) => setProducts(product.data));
-    }
+  const filterProducts = (category) => {
+    setProducts({});
+    fetch(
+      `${baseUrl}/products?populate=*&filters[$and][0][categories][name][$eq]=${category}`
+    )
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
   };
 
-  const retrieveCart = () => {
-    commerce.cart.retrieve().then((cart) => setCart(cart));
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+    updateTotalPrice("increase", product.initialPrice);
   };
 
-  const addToCart = (productId, quantity) => {
-    commerce.cart
-      .add(productId, quantity)
-      .then((response) => setCart(response.cart));
-  };
-
-  const updateQuantity = (productId, quantity) => {
-    commerce.cart
-      .update(productId, { quantity: quantity })
-      .then((response) => setCart(response.cart));
-  };
-
-  const removeFromCart = (productId) => {
-    commerce.cart.remove(productId).then((response) => setCart(response.cart));
+  const deleteFromCart = (selected) => {
+    setCart([...cart.filter((item) => item.id !== selected.id)]);
+    setTotalPrice([
+      ...totalPrice.filter((price) => price !== selected.initialPrice),
+    ]);
   };
 
   const emptyCart = () => {
-    commerce.cart.empty().then((response) => setCart(response.cart));
+    setCart([]);
+    setTotalPrice([]);
+  };
+
+  const updateTotalPrice = (direction, price) => {
+    if (direction === "increase") {
+      setTotalPrice([...totalPrice, price]);
+    } else {
+      const index = totalPrice.findIndex((item) => item === price);
+      totalPrice.splice(index, 1);
+      setTotalPrice([...totalPrice]);
+    }
+  };
+
+  const updateSubTotal = () => {
+    setSubTotal(
+      totalPrice.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        0
+      )
+    );
   };
 
   useEffect(() => {
-    // store product overview to local storage, this is to persist the state even after page refreshes
+    // store states to local storage, this is to persist the state even after page refreshes
     localStorage.setItem("product", JSON.stringify(productOverview));
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("total", JSON.stringify(totalPrice));
 
     fetchCategories();
-    retrieveCart();
-  }, [productOverview]);
+  }, [productOverview, cart, totalPrice]);
 
   return (
     <ProductsContext.Provider
       value={{
         products,
-        setProducts,
-        categories,
-        setCategories,
-        fetchCategoryProducts,
         productOverview,
         setProductOverview,
+        collections,
+        filterProducts,
         cart,
         setCart,
         addToCart,
-        updateQuantity,
-        removeFromCart,
+        deleteFromCart,
         emptyCart,
+        totalPrice,
+        setTotalPrice,
+        subTotal,
+        updateTotalPrice,
+        updateSubTotal,
       }}
     >
       {children}

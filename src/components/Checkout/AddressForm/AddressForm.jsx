@@ -1,9 +1,5 @@
-import { useEffect, useContext } from "react";
-
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-import { CheckoutContext } from "../../../contexts/CheckoutContext";
 
 import { InputField } from "../../InputField/InputField";
 
@@ -29,19 +25,6 @@ import ArrowDown from "../../icons/ArrowDown";
 
 const AddressForm = () => {
   const {
-    shippingCountries,
-    shippingCountry,
-    setShippingCountry,
-    subDivisions,
-    subDivision,
-    setSubDivision,
-    shippingOption,
-    setAddressFormComplete,
-    customerShippingData,
-    setCustomerShippingData,
-  } = useContext(CheckoutContext);
-
-  const {
     register,
     handleSubmit,
     formState: { errors },
@@ -66,7 +49,6 @@ const AddressForm = () => {
     if (Object.entries(errors).length > 0) {
       return;
     } else {
-      setCustomerShippingData(data);
       navigate("payment");
     }
   };
@@ -75,19 +57,12 @@ const AddressForm = () => {
     navigate("/cart", { replace: true });
   };
 
-  useEffect(() => {
-    setAddressFormComplete(false);
-
-    return () => setAddressFormComplete(true);
-  }, []);
-
   return (
     <AddressFormWrapper>
       <StyledForm
         onSubmit={handleSubmit((data) =>
           submitAddressForm({
             ...data,
-            shippingOption,
           })
         )}
       >
@@ -135,17 +110,8 @@ const AddressForm = () => {
           <InputWrapper>
             <Label htmlFor="country">Country</Label>
             <CustomSelect>
-              <Select
-                {...register("country")}
-                value={shippingCountry}
-                onChange={(e) => setShippingCountry(e.target.value)}
-                id="country"
-              >
-                {shippingCountries.map(([code, name]) => (
-                  <SelectOption value={code} key={code}>
-                    {name}
-                  </SelectOption>
-                ))}
+              <Select>
+                <SelectOption>country </SelectOption>
               </Select>
               <CustomArrow>
                 <ArrowDown />
@@ -156,17 +122,8 @@ const AddressForm = () => {
           <InputWrapper>
             <Label htmlFor="state">State</Label>
             <CustomSelect>
-              <Select
-                {...register("state")}
-                value={subDivision}
-                onChange={(e) => setSubDivision(e.target.value)}
-                id="state"
-              >
-                {subDivisions.map(([code, name]) => (
-                  <SelectOption value={code} key={code}>
-                    {name}
-                  </SelectOption>
-                ))}
+              <Select>
+                <SelectOption>state</SelectOption>
               </Select>
               <CustomArrow>
                 <ArrowDown />
@@ -196,8 +153,7 @@ const AddressForm = () => {
         </FlexInputs>
 
         <Text italic small pryColor>
-          Delivery anywhere in Nigeria -{" "}
-          {shippingOption?.price?.formatted_with_symbol}
+          Delivery anywhere in Nigeria -
         </Text>
 
         <ButtonContainer>

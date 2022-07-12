@@ -17,6 +17,7 @@ const NotFound = () => {
   useEffect(() => {
     document.title = "404 Not Found | Dhrey Store";
   });
+
   return (
     <NotFoundWrapper>
       <Container>

@@ -14,6 +14,7 @@ export const PageHeader = styled.h2`
 export const SectionHeader = styled.h3`
   font-size: 1.65rem;
   color: ${({ theme }) => theme.colors.heading};
+  text-transform: capitalize;
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     font-size: 2.2rem;

@@ -2,6 +2,9 @@ import React, { useEffect, useContext } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
+// hooks import
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 // context import
 import { ProductsContext } from "../../contexts/ProductsContext";
 
@@ -14,23 +17,24 @@ import { ShopVariants } from "./ShopAnimation";
 import { LoadingProducts } from "../Loaders/Loaders";
 
 const Shop = () => {
-  const { products, categories, fetchCategoryProducts } =
-    useContext(ProductsContext);
-
   const params = useParams();
+  const { products, collections, filterProducts } = useContext(ProductsContext);
+
+  const slug = (collection) => {
+    return collection.split(" ").join("-");
+  };
+
+  const unSlug = params.collection.split("-").join(" ");
 
   useEffect(() => {
-    document.title = "Shop | Dhrey Store";
-    if (params.collection === "all") {
-      fetchCategoryProducts("all");
-    } else {
-      fetchCategoryProducts(params.collection);
-    }
+    if (params.collection) filterProducts(unSlug);
   }, []);
+
+  useDocumentTitle("Shop | Dhrey Store");
 
   return (
     <>
-      {products?.length === 0 ? (
+      {Object.entries(products).length === 0 ? (
         <LoadingProducts text="Fetching Products" />
       ) : (
         <Container
@@ -44,21 +48,17 @@ const Shop = () => {
             <PageHeader>Shop</PageHeader>
 
             <FilterButtonGroup>
-              {categories.map((category, index) => {
-                return (
-                  <FilterButtonList key={index}>
-                    <FilterLinkButton
-                      to={category.slug}
-                      activeClassName="active"
-                      onClick={() => {
-                        fetchCategoryProducts(category.slug);
-                      }}
-                    >
-                      {category.name}
-                    </FilterLinkButton>
-                  </FilterButtonList>
-                );
-              })}
+              {collections.data?.map((collection) => (
+                <FilterButtonList key={collection.id}>
+                  <FilterLinkButton
+                    to={`/shop/${slug(collection.attributes.name)}`}
+                    activeClassName="active"
+                    onClick={() => filterProducts(collection.attributes.name)}
+                  >
+                    {collection.attributes.name}
+                  </FilterLinkButton>
+                </FilterButtonList>
+              ))}
             </FilterButtonGroup>
 
             <Outlet />

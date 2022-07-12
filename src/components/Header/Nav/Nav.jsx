@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 // context import
 import { ProductsContext } from "../../../contexts/ProductsContext";
@@ -9,7 +9,6 @@ import { Link, LinkWrapper, StyledNav, NumberOfItem } from "./Nav.styled";
 
 const Nav = ({ nav, setNav }) => {
   const { cart } = useContext(ProductsContext);
-
   return (
     <>
       <StyledNav nav={nav}>
@@ -47,9 +46,7 @@ const Nav = ({ nav, setNav }) => {
             onClick={() => setNav(false)}
           >
             <CartIcon />
-            {cart?.line_items?.length > 0 && (
-              <NumberOfItem>{cart.line_items.length}</NumberOfItem>
-            )}
+            {cart.length > 0 && <NumberOfItem>{cart.length}</NumberOfItem>}
           </Link>
         </LinkWrapper>
       </StyledNav>

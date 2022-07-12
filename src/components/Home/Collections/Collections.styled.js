@@ -42,4 +42,5 @@ export const CollectionName = styled.h5`
   font-size: 1.3rem;
   color: ${({ theme }) => theme.colors.heading};
   z-index: 2;
+  text-transform: capitalize;
 `;

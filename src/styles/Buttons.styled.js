@@ -41,6 +41,7 @@ export const FilterLinkButton = styled(NavLink)`
   padding: 0.75rem;
   background-color: transparent;
   border: 1px solid transparent;
+  text-transform: capitalize;
 
   &:hover {
     background-color: #333;

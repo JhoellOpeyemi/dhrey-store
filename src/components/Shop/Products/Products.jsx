@@ -13,13 +13,11 @@ import { TextVariants, WordVariants } from "../../Animation";
 import Product from "../Product/Product";
 
 const Products = () => {
-  const { products } = useContext(ProductsContext);
+  const { products, setProductOverview } = useContext(ProductsContext);
 
   const params = useParams();
 
   const productsHeading = params.collection.split("-");
-
-  console.log(products);
 
   return (
     <ProductsWrapper>
@@ -33,18 +31,23 @@ const Products = () => {
         })}
       </SectionHeader>
 
-      <ProductsGroup>
-        {products?.map((product, index) => {
-          return <Product key={index} product={product} />;
-        })}
-        {typeof products === "undefined" && (
-          <NoProducts>
-            <Text>
-              No products in this collection right now. Check back later!
-            </Text>
-          </NoProducts>
-        )}
-      </ProductsGroup>
+      {products.data.length > 0 ? (
+        <ProductsGroup>
+          {products.data.map((product) => (
+            <Product
+              key={product.id}
+              product={product}
+              setProductOverview={setProductOverview}
+            />
+          ))}
+        </ProductsGroup>
+      ) : (
+        <NoProducts>
+          <Text>
+            No products in this collection right now. Check back later!
+          </Text>
+        </NoProducts>
+      )}
     </ProductsWrapper>
   );
 };

@@ -4,7 +4,7 @@ export const HeadingVariants = {
 };
 
 export const TextVariants = {
-  visible: { transition: { staggerChildren: 0.03 } },
+  visible: { transition: { staggerChildren: 0.01 } },
 };
 
 export const WordVariants = {

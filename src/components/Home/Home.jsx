@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 
 import { Container } from "../../styles/Utilities.styled";
 
+// hooks import
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 import About from "./About/About";
 import Collections from "./Collections/Collections";
 import Hero from "./Hero/Hero";
@@ -11,6 +14,8 @@ import { PreLoader } from "../Loaders/Loaders";
 
 const Home = () => {
   const [preLoader, setPreLoader] = useState(true);
+
+  useDocumentTitle("Dhrey Store | Home");
 
   useEffect(() => {
     setTimeout(() => {

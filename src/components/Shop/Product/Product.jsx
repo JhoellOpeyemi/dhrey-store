@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 
 // context import
-import { ProductsContext } from "../../../contexts/ProductsContext";
+// import { ProductsContext } from "../../../contexts/ProductsContext";
 import { Overlay } from "../../../styles/Utilities.styled";
 import {
   ProductCard,
@@ -13,9 +13,7 @@ import {
   ProductsList,
 } from "./Product.styled";
 
-const Product = ({ product }) => {
-  const { setProductOverview } = useContext(ProductsContext);
-
+const Product = ({ product, setProductOverview }) => {
   const formattedPrice = (price) => {
     const naira = "₦";
     const amount = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -29,13 +27,21 @@ const Product = ({ product }) => {
         onClick={() => setProductOverview(product)}
       >
         <ProductImageContainer>
-          <ProductImage src={product.assets[0].url} alt="" />
+          {product.attributes.images.data !== null && (
+            <ProductImage
+              src={product.attributes.images.data[0].attributes.url}
+              alt=""
+            />
+          )}
+
           <Overlay product />
         </ProductImageContainer>
 
         <ProductDetails>
-          <ProductName>{product.name}</ProductName>
-          <ProductPrice>{formattedPrice(product.price.raw)}</ProductPrice>
+          <ProductName>{product.attributes.name}</ProductName>
+          <ProductPrice>
+            {formattedPrice(product.attributes.price)}
+          </ProductPrice>
         </ProductDetails>
       </ProductCard>
     </ProductsList>

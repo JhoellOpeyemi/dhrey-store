@@ -13,7 +13,7 @@ export const ProductCard = styled(Link)`
 
 export const ProductImageContainer = styled.div`
   position: relative;
-  height: 16rem;
+  height: 17rem;
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     height: 17.5rem;

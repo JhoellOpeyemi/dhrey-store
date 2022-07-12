@@ -2,11 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 
 import { motion } from "framer-motion";
 
+// hooks import
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 // context import
 import { ProductsContext } from "../../contexts/ProductsContext";
-import { CtaButton } from "../../styles/Buttons.styled";
 
 // styled components import
+import { CtaButton } from "../../styles/Buttons.styled";
 import { PageHeader, Text } from "../../styles/Headings.styled";
 import { Container, Main, Overlay, Slide } from "../../styles/Utilities.styled";
 import {
@@ -30,22 +33,34 @@ import {
 import { PageTransition } from "../Loaders/Loaders";
 
 const ProductOverview = () => {
-  const [pageTransition, setPageTransition] = useState(true);
   const { productOverview, addToCart } = useContext(ProductsContext);
-  const currentImage = productOverview?.assets[0]?.url;
-  const [image, setImage] = useState(currentImage);
+
+  const [pageTransition, setPageTransition] = useState(true);
+
+  const firstImage = productOverview.attributes.images.data[0].attributes.url;
+  const [image, setImage] = useState(firstImage);
 
   const showImage = (e) => {
     const clickedImage = e.target.src;
     setImage(clickedImage);
   };
 
+  const cartItem = {
+    id: productOverview.id,
+    name: productOverview.attributes.name,
+    image: productOverview.attributes.images.data[0].attributes.url,
+    price: productOverview.attributes.price,
+    initialPrice: productOverview.attributes.initialPrice,
+    quantity: 1,
+  };
+
   useEffect(() => {
-    document.title = `${productOverview.name} | Dhrey Store`;
     setTimeout(() => {
       setPageTransition(false);
     }, 1500);
   });
+
+  useDocumentTitle("Product Overview | Dhrey Store");
 
   return (
     <>
@@ -62,7 +77,7 @@ const ProductOverview = () => {
           <Main moreTop>
             <PageHeader>Product Overview</PageHeader>
 
-            <ProductName>{productOverview.name}</ProductName>
+            <ProductName>{productOverview.attributes.name}</ProductName>
 
             <ProductOverviewGroup>
               <ProductImageGroup>
@@ -72,36 +87,23 @@ const ProductOverview = () => {
                   <Overlay product />
                 </CurrentImage>
                 <OtherImagesGroup>
-                  {productOverview?.assets?.map((img, index) => {
-                    return (
-                      <OtherImage key={index}>
-                        <OtherImageButton
-                          key={img.id}
-                          onClick={(e) => showImage(e)}
-                        >
-                          <img src={img.url} alt="" />
-                        </OtherImageButton>
-                        <Overlay product />
-                      </OtherImage>
-                    );
-                  })}
+                  {productOverview.attributes.images.data.map((image) => (
+                    <OtherImage key={image.id}>
+                      <OtherImageButton onClick={(e) => showImage(e)}>
+                        <img src={image.attributes.url} alt="" />
+                      </OtherImageButton>
+                      <Overlay product />
+                    </OtherImage>
+                  ))}
                 </OtherImagesGroup>
               </ProductImageGroup>
 
               <ProductDescGroup as={motion.div} variants={ProductDescVariants}>
                 <h5>Description</h5>
-                <Text
-                  small
-                  dangerouslySetInnerHTML={{
-                    __html: productOverview.description,
-                  }}
-                />
+                <Text>{productOverview.attributes.description}</Text>
 
                 <ButtonContainer>
-                  <CtaButton
-                    to="/cart"
-                    onClick={() => addToCart(`${productOverview.id}`, 1)}
-                  >
+                  <CtaButton to="/cart" onClick={() => addToCart(cartItem)}>
                     Add to cart
                   </CtaButton>
                 </ButtonContainer>

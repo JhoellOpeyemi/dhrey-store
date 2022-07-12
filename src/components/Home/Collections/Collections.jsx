@@ -34,16 +34,21 @@ import {
 import { CollectionSubTextArray } from "../../../lib/websiteTexts";
 
 const Collections = () => {
-  const { categories } = useContext(ProductsContext);
+  // get the collections state from the context
+  const { collections, filterProducts } = useContext(ProductsContext);
 
-  const categoriesToShow = categories.slice(-3);
+  // manipulate the collections state to get the last three collection and set to 'homeCollections' variable
+  let homeCollections = [];
+
+  if (collections.data !== null) {
+    homeCollections = collections.data.slice(-3);
+  }
 
   const { ref, inView } = useInView({
     threshold: 0.3,
   });
-  const collectionAnimation = useAnimation();
 
-  console.log(categories);
+  const collectionAnimation = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -59,10 +64,12 @@ const Collections = () => {
       initial="hidden"
       animate={collectionAnimation}
     >
+      {/* collection section heading */}
       <SectionHeader as={motion.h3} variants={HeadingVariants}>
         Collections
       </SectionHeader>
 
+      {/* subtitle text below collection heading */}
       <Text as={motion.p} variants={TextVariants}>
         {CollectionSubTextArray.map((text, index) => {
           return (
@@ -74,21 +81,23 @@ const Collections = () => {
       </Text>
 
       <CollectionGroup as={motion.div} variants={CollectionGroupVariants}>
-        {categoriesToShow.map((category, index) => {
-          return (
-            <Card key={index} to={`/shop/${category.slug}`}>
-              <Slide as={motion.div} variants={SlideVariants} />
-              <CollectionImage src={category?.assets[0]?.url} alt="" />
-              <CollectionName as={motion.h5} variants={CollectionNameVariants}>
-                {category.name}
-              </CollectionName>
-              <Overlay backgroundColor="rgba(20,20,20,.6)" />
-            </Card>
-          );
-        })}
+        {/* loop through homeCollections and create a card for each collection */}
+        {homeCollections.map((collection) => (
+          <Card to={`/shop/all`} key={collection.id}>
+            <Slide as={motion.div} variants={SlideVariants} />
+            <CollectionImage
+              src={collection.attributes.image.data.attributes.url}
+              alt=""
+            />
+            <CollectionName as={motion.h5} variants={CollectionNameVariants}>
+              {collection.attributes.name}
+            </CollectionName>
+            <Overlay backgroundColor="rgba(20,20,20,.6)" />
+          </Card>
+        ))}
       </CollectionGroup>
 
-      <LinkButton to="/shop/all" small>
+      <LinkButton to="/shop/all" small onClick={() => filterProducts("all")}>
         See All
       </LinkButton>
     </CollectionsWrapper>

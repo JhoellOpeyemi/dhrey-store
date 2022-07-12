@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 
+// hooks import
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 // context import
 import { ProductsContext } from "../../contexts/ProductsContext";
 
@@ -17,16 +20,16 @@ import { PageTransition } from "../Loaders/Loaders";
 import { CartVariants } from "./CartAnimation";
 
 const Cart = () => {
+  const { cart } = useContext(ProductsContext);
+
   const [pageTransition, setPageTransition] = useState(true);
-  const { cart, updateQuantity, removeFromCart, emptyCart } =
-    useContext(ProductsContext);
 
   useEffect(() => {
-    document.title = "Your Cart | Dhrey Store";
     setTimeout(() => {
       setPageTransition(false);
     }, 1500);
   });
+  useDocumentTitle("Your Cart | Dhrey Store");
 
   return (
     <>
@@ -43,16 +46,7 @@ const Cart = () => {
           <Main moreTop>
             <PageHeader>Cart</PageHeader>
 
-            {cart.total_items === 0 ? (
-              <EmptyCart />
-            ) : (
-              <FilledCart
-                cart={cart}
-                updateQuantity={updateQuantity}
-                removeFromCart={removeFromCart}
-                emptyCart={emptyCart}
-              />
-            )}
+            {cart.length === 0 ? <EmptyCart /> : <FilledCart />}
           </Main>
         </Container>
       )}

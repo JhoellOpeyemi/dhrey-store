@@ -143,7 +143,7 @@ export const Link = styled(NavLink)`
 
   @keyframes reveal {
     from {
-      transform: translateY(110%);
+      transform: translateY(120%);
     }
     to {
       transform: translateY(0);

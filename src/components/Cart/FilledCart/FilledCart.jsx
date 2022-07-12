@@ -1,83 +1,42 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
-// icons import
-import Close from "../../icons/Close";
-import Minus from "../../icons/Minus";
-import Plus from "../../icons/Plus";
+// context import
+import { ProductsContext } from "../../../contexts/ProductsContext";
 
 // styled components import
 import {
-  CartItem,
   CartWrapper,
-  Delete,
-  Details,
-  Image,
-  Name,
-  Price,
-  PriceAndDelete,
-  Quantity,
-  QuantityPriceDelete,
   CartCheckout,
   ButtonGroup,
   SubTotalPrice,
   SubTotal,
 } from "./FilledCart.styled";
-import { QuantityButton } from "../../../styles/Buttons.styled";
-import { Overlay } from "../../../styles/Utilities.styled";
 import { CtaButton, SecondaryButton } from "../../../styles/Buttons.styled";
+import CartItem from "../CartItem/CartItem";
 
-const FilledCart = ({ cart, updateQuantity, removeFromCart, emptyCart }) => {
+const FilledCart = () => {
+  const { cart, emptyCart, subTotal, updateSubTotal } =
+    useContext(ProductsContext);
+
   const formattedPrice = (price) => {
     const naira = "₦";
     const amount = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return `${naira}${amount}`;
   };
 
+  useEffect(() => {
+    updateSubTotal();
+  });
+
   return (
     <CartWrapper>
-      {cart?.line_items?.map((item) => (
-        <CartItem key={item.id}>
-          <Image>
-            <img src={item.image.url} alt="" />
-            <Overlay product />
-          </Image>
-
-          <Details>
-            <Name>{item.name}</Name>
-
-            <QuantityPriceDelete>
-              <Quantity>
-                <QuantityButton
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                >
-                  <Minus />
-                </QuantityButton>
-                <p>{item.quantity}</p>
-                <QuantityButton
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                >
-                  <Plus />
-                </QuantityButton>
-              </Quantity>
-              <PriceAndDelete>
-                <Price>{formattedPrice(item?.price?.raw)}</Price>
-                <Delete onClick={() => removeFromCart(item.id)}>
-                  <Close />
-                </Delete>
-              </PriceAndDelete>
-            </QuantityPriceDelete>
-          </Details>
-        </CartItem>
+      {cart.map((item) => (
+        <CartItem key={item.id} item={item} />
       ))}
 
       <CartCheckout>
         <SubTotal>
-          Subtotal -{" "}
-          <SubTotalPrice>
-            {typeof cart?.subtotal?.raw === "undefined"
-              ? "-"
-              : formattedPrice(cart?.subtotal?.raw)}
-          </SubTotalPrice>
+          Subtotal - <SubTotalPrice>{formattedPrice(subTotal)}</SubTotalPrice>
         </SubTotal>
         <ButtonGroup>
           <SecondaryButton onClick={emptyCart}>Empty cart</SecondaryButton>

@@ -59,6 +59,7 @@ export const OtherImagesGroup = styled.div`
 
 export const OtherImage = styled.div`
   position: relative;
+  width: 100%;
 
   &:not(:last-child) {
     margin-right: 0.7rem;

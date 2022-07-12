@@ -1,7 +1,4 @@
-import React, { useContext } from "react";
-
-// context import
-import { NavContext } from "../../contexts/NavContext";
+import React, { useState } from "react";
 
 import Nav from "./Nav/Nav";
 import Hamburger from "../icons/Hamburger";
@@ -14,7 +11,11 @@ import {
 } from "./Header.styled";
 
 const Header = () => {
-  const { nav, toggleNav, setNav } = useContext(NavContext);
+  const [nav, setNav] = useState(false);
+
+  const toggleNav = () => {
+    setNav((prev) => !prev);
+  };
 
   if (!nav) {
     document.querySelector("body").style.overflowY = "auto";
