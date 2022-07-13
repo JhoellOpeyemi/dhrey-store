@@ -75,7 +75,7 @@ export const ProductsProvider = ({ children }) => {
       localStorage.getItem("total")
     );
 
-    setProducts(productOverviewFromLocalStorage);
+    setProductOverview(productOverviewFromLocalStorage);
     setCart(cartFromLocalStorage);
     setTotalPrice(totalPriceFromLocalStorage);
   }, []);
