@@ -5,25 +5,10 @@ export const ProductsContext = createContext();
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState({});
 
-  const productOverviewFromLocalStorage = JSON.parse(
-    localStorage.getItem("product") || "{}"
-  );
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
-  const totalPriceFromLocalStorage = JSON.parse(localStorage.getItem("total"));
-
-  if (localStorage.getItem("cart") == null) {
-    localStorage.setItem("cart", "[]");
-  }
-  if (localStorage.getItem("total") == null) {
-    localStorage.setItem("total", "[]");
-  }
-
   const [collections, setCollections] = useState({});
-  const [productOverview, setProductOverview] = useState(
-    productOverviewFromLocalStorage
-  );
-  const [cart, setCart] = useState(cartFromLocalStorage);
-  const [totalPrice, setTotalPrice] = useState(totalPriceFromLocalStorage);
+  const [productOverview, setProductOverview] = useState({});
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
   const [subTotal, setSubTotal] = useState();
 
   const baseUrl = "https://dhrey-store.herokuapp.com/api";
@@ -80,6 +65,20 @@ export const ProductsProvider = ({ children }) => {
       );
     }
   };
+
+  useEffect(() => {
+    const productOverviewFromLocalStorage = JSON.parse(
+      localStorage.getItem("product")
+    );
+    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+    const totalPriceFromLocalStorage = JSON.parse(
+      localStorage.getItem("total")
+    );
+
+    setProducts(productOverviewFromLocalStorage);
+    setCart(cartFromLocalStorage);
+    setTotalPrice(totalPriceFromLocalStorage);
+  }, []);
 
   useEffect(() => {
     // store states to local storage, this is to persist the state even after page refreshes
