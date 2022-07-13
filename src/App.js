@@ -18,6 +18,7 @@ import {
   AddressForm,
   NotFound,
   PaymentForm,
+  SearchResult,
 } from "./components";
 
 // contexts provider import
@@ -48,6 +49,8 @@ const App = () => {
                   <Route index element={<Products />} />
                   <Route path=":collection" element={<Products />} />
                 </Route>
+
+                <Route path="/search/:product" element={<SearchResult />} />
 
                 <Route path="product/:id" element={<ProductOverview />} />
 

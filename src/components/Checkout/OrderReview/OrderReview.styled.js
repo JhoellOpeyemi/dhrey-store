@@ -13,7 +13,7 @@ export const Product = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.black4};
+  border-bottom: 1px solid #333;
 
   @media screen and (min-width: ${({ theme }) => theme.break.tablet}) {
     padding: 2rem 1.5rem 2rem 5rem;

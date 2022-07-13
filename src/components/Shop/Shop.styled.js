@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const ShopWrapper = styled.div`
+  margin-top: 3rem;
+`;
+
 export const FilterButtonGroup = styled.ul`
   display: flex;
   justify-content: center;

@@ -8,10 +8,17 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 // context import
 import { ProductsContext } from "../../contexts/ProductsContext";
 
+// normal components import
+import SearchInput from "../SearchInput/SearchInput";
+
 // styled components import
 import { PageHeader } from "../../styles/Headings.styled";
 import { Container, Main } from "../../styles/Utilities.styled";
-import { FilterButtonGroup, FilterButtonList } from "./Shop.styled";
+import {
+  FilterButtonGroup,
+  FilterButtonList,
+  ShopWrapper,
+} from "./Shop.styled";
 import { FilterLinkButton } from "../../styles/Buttons.styled";
 import { ShopVariants } from "./ShopAnimation";
 import { LoadingProducts } from "../Loaders/Loaders";
@@ -45,23 +52,27 @@ const Shop = () => {
           exit="exit"
         >
           <Main moreTop>
-            <PageHeader>Shop</PageHeader>
+            <SearchInput />
 
-            <FilterButtonGroup>
-              {collections.data?.map((collection) => (
-                <FilterButtonList key={collection.id}>
-                  <FilterLinkButton
-                    to={`/shop/${slug(collection.attributes.name)}`}
-                    activeClassName="active"
-                    onClick={() => filterProducts(collection.attributes.name)}
-                  >
-                    {collection.attributes.name}
-                  </FilterLinkButton>
-                </FilterButtonList>
-              ))}
-            </FilterButtonGroup>
+            <ShopWrapper>
+              <PageHeader>Shop</PageHeader>
 
-            <Outlet />
+              <FilterButtonGroup>
+                {collections.data?.map((collection) => (
+                  <FilterButtonList key={collection.id}>
+                    <FilterLinkButton
+                      to={`/shop/${slug(collection.attributes.name)}`}
+                      activeClassName="active"
+                      onClick={() => filterProducts(collection.attributes.name)}
+                    >
+                      {collection.attributes.name}
+                    </FilterLinkButton>
+                  </FilterButtonList>
+                ))}
+              </FilterButtonGroup>
+
+              <Outlet />
+            </ShopWrapper>
           </Main>
         </Container>
       )}

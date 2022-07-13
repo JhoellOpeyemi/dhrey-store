@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+// normal components import
+import SearchInput from "../../SearchInput/SearchInput";
+
 // styled components import
 import { Main, Overlay, Slide } from "../../../styles/Utilities.styled";
 import { LinkButton } from "../../../styles/Buttons.styled";
@@ -11,7 +14,6 @@ import {
   HeroTextWrapper,
   Image,
   ImageGroup,
-  SearchBox,
   SliderAndText,
 } from "./Hero.styled";
 
@@ -19,7 +21,6 @@ import {
 import Boots from "../../../assets/boots.jpg";
 import PowerBank from "../../../assets/power-bank.jpg";
 import Drone from "../../../assets/drone.jpg";
-import SearchIcon from "../../icons/SearchIcon";
 
 // animation variants import
 import {
@@ -55,10 +56,7 @@ const Hero = () => {
 
   return (
     <Main as={motion.main} variants={MainVariants}>
-      <SearchBox>
-        <SearchIcon />
-        <input type="search" placeholder="Search Products" />
-      </SearchBox>
+      <SearchInput />
 
       <SliderAndText>
         <HeroSlider>

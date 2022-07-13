@@ -1,7 +1,5 @@
 import React from "react";
 
-// context import
-// import { ProductsContext } from "../../../contexts/ProductsContext";
 import { Overlay } from "../../../styles/Utilities.styled";
 import {
   ProductCard,
@@ -10,7 +8,7 @@ import {
   ProductImageContainer,
   ProductName,
   ProductPrice,
-  ProductsList,
+  ProductList,
 } from "./Product.styled";
 
 const Product = ({ product, setProductOverview }) => {
@@ -21,7 +19,7 @@ const Product = ({ product, setProductOverview }) => {
   };
 
   return (
-    <ProductsList>
+    <ProductList>
       <ProductCard
         to={`/product/${product.id}`}
         onClick={() => setProductOverview(product)}
@@ -44,7 +42,7 @@ const Product = ({ product, setProductOverview }) => {
           </ProductPrice>
         </ProductDetails>
       </ProductCard>
-    </ProductsList>
+    </ProductList>
   );
 };
 

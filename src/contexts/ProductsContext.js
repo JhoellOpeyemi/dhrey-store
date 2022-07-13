@@ -19,6 +19,11 @@ export const ProductsProvider = ({ children }) => {
   // a state to hold products data
   const [products, setProducts] = useState({});
 
+  // a state to hold data for searched products
+  const [searchedProducts, setSearchedProducts] = useState({});
+
+  const [query, setQuery] = useState("");
+
   // a state to hold collections data
   const [collections, setCollections] = useState({});
 
@@ -53,6 +58,14 @@ export const ProductsProvider = ({ children }) => {
     )
       .then((res) => res.json())
       .then((data) => setProducts(data));
+  };
+
+  const fetchSearchedProducts = (query) => {
+    fetch(
+      `${baseUrl}/products?populate=*&filters[$and][0][name][$contains]=${query}`
+    )
+      .then((res) => res.json())
+      .then((data) => setSearchedProducts(data));
   };
 
   const addToCart = (product) => {
@@ -124,6 +137,11 @@ export const ProductsProvider = ({ children }) => {
         subTotal,
         updateTotalPrice,
         updateSubTotal,
+        searchedProducts,
+        setSearchedProducts,
+        fetchSearchedProducts,
+        query,
+        setQuery,
       }}
     >
       {children}

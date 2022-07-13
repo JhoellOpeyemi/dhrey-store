@@ -15,6 +15,7 @@ export const SectionHeader = styled.h3`
   font-size: 1.65rem;
   color: ${({ theme }) => theme.colors.heading};
   text-transform: capitalize;
+  text-align: ${({ center }) => (center ? "center" : "left")};
 
   @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
     font-size: 2.2rem;
@@ -46,6 +47,7 @@ export const Text = styled.p`
         font-size: 1.2rem;
       }
     `}
+
 
     ${({ italic }) =>
     italic &&

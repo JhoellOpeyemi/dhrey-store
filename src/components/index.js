@@ -9,4 +9,5 @@ export { default as Checkout } from "./Checkout/Checkout";
 export { default as AddressForm } from "./Checkout/AddressForm/AddressForm";
 export { default as PaymentForm } from "./Checkout/PaymentForm/PaymentForm";
 export { default as Footer } from "./Footer/Footer";
+export { default as SearchResult } from "./SearchResult/SearchResult";
 export { default as NotFound } from "./NotFound/NotFound";
