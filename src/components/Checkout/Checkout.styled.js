@@ -48,8 +48,5 @@ export const FormWrapper = styled.div`
   max-width: 57rem;
   margin: 2rem auto;
   border: 1px solid ${({ theme }) => theme.colors.black4};
-  padding: 2rem 1.4rem;
-
-  @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
-  }
+  padding: 3rem 1.4rem;
 `;

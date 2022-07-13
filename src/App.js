@@ -22,6 +22,7 @@ import {
 
 // contexts provider import
 import { ProductsProvider } from "./contexts/ProductsContext";
+import { CheckoutProvider } from "./contexts/CheckoutContext";
 
 // styled components import
 import GlobalStyles from "./styles/Global";
@@ -34,32 +35,34 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ScrollToTop>
         <ProductsProvider>
-          <GlobalStyles />
-          <Header />
-          <AnimatePresence exitBeforeEnter>
-            <Routes location={location} key={location.key}>
-              <Route path="/" element={<Home />} />
+          <CheckoutProvider>
+            <GlobalStyles />
+            <Header />
+            <AnimatePresence exitBeforeEnter>
+              <Routes location={location} key={location.key}>
+                <Route path="/" element={<Home />} />
 
-              <Route path="about" element={<About />} />
+                <Route path="about" element={<About />} />
 
-              <Route path="shop" element={<Shop />}>
-                <Route index element={<Products />} />
-                <Route path=":collection" element={<Products />} />
-              </Route>
+                <Route path="shop" element={<Shop />}>
+                  <Route index element={<Products />} />
+                  <Route path=":collection" element={<Products />} />
+                </Route>
 
-              <Route path="product/:id" element={<ProductOverview />} />
+                <Route path="product/:id" element={<ProductOverview />} />
 
-              <Route path="cart" element={<Cart />} />
+                <Route path="cart" element={<Cart />} />
 
-              <Route path="checkout" element={<Checkout />}>
-                <Route index element={<AddressForm />} />
-                <Route path="payment" element={<PaymentForm />} />
-              </Route>
+                <Route path="checkout" element={<Checkout />}>
+                  <Route index element={<AddressForm />} />
+                  <Route path="payment" element={<PaymentForm />} />
+                </Route>
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </AnimatePresence>
-          <Footer />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AnimatePresence>
+            <Footer />
+          </CheckoutProvider>
         </ProductsProvider>
       </ScrollToTop>
     </ThemeProvider>

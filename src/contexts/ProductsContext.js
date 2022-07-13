@@ -56,8 +56,12 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
-    updateTotalPrice("increase", product.initialPrice);
+    if (cart.some((item) => item.id === product.id)) {
+      return;
+    } else {
+      setCart([...cart, product]);
+      updateTotalPrice("increase", product.initialPrice);
+    }
   };
 
   const deleteFromCart = (selected) => {
@@ -75,7 +79,7 @@ export const ProductsProvider = ({ children }) => {
   const updateTotalPrice = (direction, price) => {
     if (direction === "increase") {
       setTotalPrice([...totalPrice, price]);
-    } else {
+    } else if (direction === "decrease") {
       const index = totalPrice.findIndex((item) => item === price);
       totalPrice.splice(index, 1);
       setTotalPrice([...totalPrice]);

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // context import
 import { ProductsContext } from "../../../contexts/ProductsContext";
@@ -49,9 +49,11 @@ const CartItem = ({ item }) => {
     updateTotalPrice("decrease", item.initialPrice);
   };
 
-  if (item.quantity === 0) {
-    deleteFromCart(item);
-  }
+  useEffect(() => {
+    if (item.quantity === 0) {
+      deleteFromCart(item);
+    }
+  }, [item, deleteFromCart]);
 
   return (
     <CartItemContainer>

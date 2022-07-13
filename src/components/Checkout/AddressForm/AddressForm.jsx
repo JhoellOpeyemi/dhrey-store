@@ -1,6 +1,13 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import { nigerianStates } from "../../../lib/nigerianStates";
+
+// context import
+import { CheckoutContext } from "../../../contexts/CheckoutContext";
+
+// normal component import
 import { InputField } from "../../InputField/InputField";
 
 // styled components import
@@ -24,27 +31,30 @@ import { SecondaryButton } from "../../../styles/Buttons.styled";
 import ArrowDown from "../../icons/ArrowDown";
 
 const AddressForm = () => {
+  const { customerInfo, deliveryPrice, updateCustomerInfo } =
+    useContext(CheckoutContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      lga: "",
-      country: "NG",
-      state: "AB",
-      phoneNumber: "",
+      firstName: customerInfo?.firstName,
+      lastName: customerInfo?.lastName,
+      email: customerInfo?.email,
+      address: customerInfo?.address,
+      lga: customerInfo?.lga,
+      country: "Nigeria",
+      state: customerInfo?.state,
+      phoneNumber: customerInfo?.phoneNumber,
     },
   });
 
   let navigate = useNavigate();
 
   const submitAddressForm = (data) => {
-    console.log(data);
+    updateCustomerInfo(data);
 
     if (Object.entries(errors).length > 0) {
       return;
@@ -57,9 +67,16 @@ const AddressForm = () => {
     navigate("/cart", { replace: true });
   };
 
+  const formattedPrice = (price) => {
+    const naira = "₦";
+    const amount = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return `${naira}${amount}`;
+  };
+
   return (
     <AddressFormWrapper>
       <StyledForm
+        id="address-form"
         onSubmit={handleSubmit((data) =>
           submitAddressForm({
             ...data,
@@ -110,8 +127,8 @@ const AddressForm = () => {
           <InputWrapper>
             <Label htmlFor="country">Country</Label>
             <CustomSelect>
-              <Select>
-                <SelectOption>country </SelectOption>
+              <Select {...register("country")}>
+                <SelectOption value="nigeria">Nigeria</SelectOption>
               </Select>
               <CustomArrow>
                 <ArrowDown />
@@ -122,8 +139,19 @@ const AddressForm = () => {
           <InputWrapper>
             <Label htmlFor="state">State</Label>
             <CustomSelect>
-              <Select>
-                <SelectOption>state</SelectOption>
+              <Select
+                {...register("state", {
+                  required: {
+                    value: true,
+                    message: "Please select your state",
+                  },
+                })}
+              >
+                {nigerianStates.map(({ code, name }) => (
+                  <SelectOption value={code} key={code}>
+                    {name}
+                  </SelectOption>
+                ))}
               </Select>
               <CustomArrow>
                 <ArrowDown />
@@ -153,17 +181,19 @@ const AddressForm = () => {
         </FlexInputs>
 
         <Text italic small pryColor>
-          Delivery anywhere in Nigeria -
+          Delivery anywhere in Nigeria - {formattedPrice(deliveryPrice)}
         </Text>
-
-        <ButtonContainer>
-          <SecondaryButton onClick={backToCart} small>
-            Back to cart
-          </SecondaryButton>
-
-          <NextButton>Next</NextButton>
-        </ButtonContainer>
       </StyledForm>
+
+      <ButtonContainer>
+        <SecondaryButton onClick={backToCart} small>
+          Back to cart
+        </SecondaryButton>
+
+        <NextButton type="submit" form="address-form">
+          Next
+        </NextButton>
+      </ButtonContainer>
     </AddressFormWrapper>
   );
 };

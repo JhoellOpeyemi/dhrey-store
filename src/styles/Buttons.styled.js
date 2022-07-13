@@ -124,5 +124,9 @@ export const SecondaryButton = styled.button`
     small &&
     css`
       font-size: 1rem;
+
+      @media screen and (min-width: ${({ theme }) => theme.break.bigTablet}) {
+        font-size: 1.19rem;
+      }
     `}
 `;
