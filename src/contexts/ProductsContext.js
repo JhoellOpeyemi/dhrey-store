@@ -29,6 +29,12 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const addToCart = (product) => {
+    if (localStorage.getItem("cart") === null) {
+      setCart([]);
+    }
+    if (localStorage.getItem("total") === null) {
+      setTotalPrice([]);
+    }
     setCart([...cart, product]);
     updateTotalPrice("increase", product.initialPrice);
   };
