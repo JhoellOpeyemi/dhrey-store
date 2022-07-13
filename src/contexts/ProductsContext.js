@@ -29,12 +29,6 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const addToCart = (product) => {
-    if (localStorage.getItem("cart") === null) {
-      setCart([]);
-    }
-    if (localStorage.getItem("total") === null) {
-      setTotalPrice([]);
-    }
     setCart([...cart, product]);
     updateTotalPrice("increase", product.initialPrice);
   };
@@ -62,38 +56,17 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const updateSubTotal = () => {
-    if (totalPrice !== null) {
-      setSubTotal(
-        totalPrice.reduce(
-          (previousValue, currentValue) => previousValue + currentValue,
-          0
-        )
-      );
-    }
+    setSubTotal(
+      totalPrice.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        0
+      )
+    );
   };
 
   useEffect(() => {
-    const productOverviewFromLocalStorage = JSON.parse(
-      localStorage.getItem("product")
-    );
-    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
-    const totalPriceFromLocalStorage = JSON.parse(
-      localStorage.getItem("total")
-    );
-
-    setProductOverview(productOverviewFromLocalStorage);
-    setCart(cartFromLocalStorage);
-    setTotalPrice(totalPriceFromLocalStorage);
-  }, []);
-
-  useEffect(() => {
-    // store states to local storage, this is to persist the state even after page refreshes
-    localStorage.setItem("product", JSON.stringify(productOverview));
-    localStorage.setItem("cart", JSON.stringify(cart));
-    localStorage.setItem("total", JSON.stringify(totalPrice));
-
     fetchCategories();
-  }, [productOverview, cart, totalPrice]);
+  }, []);
 
   return (
     <ProductsContext.Provider
