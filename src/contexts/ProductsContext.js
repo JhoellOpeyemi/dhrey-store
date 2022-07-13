@@ -71,12 +71,14 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const updateSubTotal = () => {
-    setSubTotal(
-      totalPrice.reduce(
-        (previousValue, currentValue) => previousValue + currentValue,
-        0
-      )
-    );
+    if (totalPrice !== null) {
+      setSubTotal(
+        totalPrice.reduce(
+          (previousValue, currentValue) => previousValue + currentValue,
+          0
+        )
+      );
+    }
   };
 
   useEffect(() => {
