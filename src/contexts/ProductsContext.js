@@ -8,10 +8,12 @@ export const ProductsProvider = ({ children }) => {
   const productOverviewFromLocalStorage = JSON.parse(
     localStorage.getItem("product") || "{}"
   );
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
-  const totalPriceFromLocalStorage = JSON.parse(
-    localStorage.getItem("total") || "[]"
-  );
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+  const totalPriceFromLocalStorage = JSON.parse(localStorage.getItem("total"));
+
+  if (localStorage.getItem("cart") == null) {
+    localStorage.setItem("cart", "[]");
+  }
 
   const [collections, setCollections] = useState({});
   const [productOverview, setProductOverview] = useState(

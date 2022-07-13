@@ -41,7 +41,7 @@ const Collections = () => {
   let homeCollections = [];
 
   if (collections.data !== null) {
-    homeCollections = collections.data.slice(-3);
+    homeCollections = collections?.data?.slice(-3);
   }
 
   const { ref, inView } = useInView({
