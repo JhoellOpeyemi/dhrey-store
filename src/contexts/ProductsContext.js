@@ -11,11 +11,10 @@ export const ProductsProvider = ({ children }) => {
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
   const totalPriceFromLocalStorage = JSON.parse(localStorage.getItem("total"));
 
-  if (
-    localStorage.getItem("cart") == null ||
-    localStorage.getItem("total") == null
-  ) {
+  if (localStorage.getItem("cart") == null) {
     localStorage.setItem("cart", "[]");
+  }
+  if (localStorage.getItem("total") == null) {
     localStorage.setItem("total", "[]");
   }
 
